@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0"
-            xmlns:fx="http://javafx.com/fxml" fx:controller="sample.ManufacturerHome">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="sample.ManufacturerHome">
    <children>
-      <Label layoutX="221.0" layoutY="134.0" prefHeight="83.0" prefWidth="181.0" text="Welcome">
+      <Button layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#onLogoutButtonPressed" text="Logout" />
+      <Button layoutX="274.0" layoutY="132.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="124.0" text="Add New Car"
+              onAction="#addNewCar">
          <font>
-            <Font size="43.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
-      </Label>
-      <Button layoutX="534.0" layoutY="361.0" mnemonicParsing="false" text="Logout"
-              onAction="#onLogoutButtonPressed"/>
+      </Button>
    </children>
 </AnchorPane>

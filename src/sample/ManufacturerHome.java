@@ -23,4 +23,12 @@ public class ManufacturerHome {
         stage.setScene(loginPageScene);
         stage.show();
     }
+
+    public void addNewCar(ActionEvent event) throws IOException {
+        Parent loginPageParent = FXMLLoader.load(getClass().getResource("AddNewCar.fxml"));
+        Scene loginPageScene = new Scene(loginPageParent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(loginPageScene);
+        stage.show();
+    }
 }

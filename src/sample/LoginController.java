@@ -64,7 +64,7 @@ public class LoginController {
     public void onLoginButtonPressed(ActionEvent event) throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        String usernameAndPassword = username + "," + password;
+        String usernameAndPassword = "LOGIN" + "\t" + username + "\t" + password;
 
         Socket socket = new Socket("127.0.0.1", 55555);
 
@@ -74,7 +74,7 @@ public class LoginController {
         dataOutputStream.writeUTF(usernameAndPassword);
 
         if (!dataInputStream.readBoolean()) {
-            warning.setText("Wrong username and password. Try again.");
+            warning.setText("  Wrong username or password. Try again.");
         } else {
             Parent loginPageParent = FXMLLoader.load(getClass().getResource("ManufacturerHome.fxml"));
             Scene loginPageScene = new Scene(loginPageParent);

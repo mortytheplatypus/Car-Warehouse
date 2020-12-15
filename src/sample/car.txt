@@ -1,0 +1,7 @@
+1YX98J	2014	Black	White	Red	Toyota	RAV4	25000
+ABC132	2007	Yellow	Red	Blue	Toyota	Corolla	5900
+MARY	2017	Grey	Blue	Red	BMW	116d	55132
+38000	2012	Blue	Green Grey	Honda	Civic	9200
+AABMM2369	1998	blue	grey		Toyoya	Corolla	35000
+16121971-B	1971	Green	Red	Crimson	FreedomFighters	Sacrifice	3000000
+DarkKnight	2008	Blue	Grey	White	Nolan	Comicbook/Action/Adventure	530000000

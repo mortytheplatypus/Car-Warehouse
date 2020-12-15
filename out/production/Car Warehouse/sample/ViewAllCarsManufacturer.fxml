@@ -1,0 +1,19 @@
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns:fx="http://javafx.com/fxml" fx:controller="sample.ViewAllCarsManufacturer">
+    <children>
+        <TableView layoutX="59.0" layoutY="37.0" prefHeight="349.0" prefWidth="527.0">
+            <columns>
+                <TableColumn prefWidth="75.0" text="Reg. No." />
+                <TableColumn prefWidth="75.0" text="Year Made" />
+                <TableColumn prefWidth="75.0" text="Color" />
+                <TableColumn prefWidth="75.0" text="Maker" />
+                <TableColumn prefWidth="75.0" text="Model" />
+                <TableColumn prefWidth="75.0" text="Price" />
+                <TableColumn prefWidth="75.0" text="Quantity" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
