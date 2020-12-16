@@ -31,7 +31,7 @@
                     <Label layoutX="15.0" layoutY="263.0" prefHeight="25" prefWidth="125.0" text="Price" />
               <TextField fx:id="newPrice" layoutX="140.0" layoutY="263.0" prefWidth="250" />
       
-                    <Button fx:id="cancelOnAddNewCar" layoutX="390.0" layoutY="308.0" onAction="#OnCancelPressed" text="Cancel" />
+                    <Button layoutX="390.0" layoutY="308.0" onAction="#OnCancelPressed" text="Cancel" />
             <Button fx:id="confirmOnAddNewCar" layoutX="224.0" layoutY="308.0" onAction="#onConfirmPressed" text="Confirm" />
          </children>
       </AnchorPane>

@@ -8,6 +8,7 @@ import java.net.Socket;
 public class NetworkUtil {
     private DataInputStream in;
     private DataOutputStream out;
+    private static NetworkUtil instance;
 
     private NetworkUtil() {
         try {
@@ -15,7 +16,7 @@ public class NetworkUtil {
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
         } catch (IOException e) {
-
+            System.out.println("Issue in NetworkUtil class!");
         }
     }
 
@@ -36,8 +37,6 @@ public class NetworkUtil {
         return null;
     }
 
-
-    private static NetworkUtil instance;
     public static NetworkUtil getInstance() {
         if (instance==null) instance = new NetworkUtil();
         return instance;

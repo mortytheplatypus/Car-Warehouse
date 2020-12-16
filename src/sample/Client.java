@@ -10,6 +10,7 @@ public class Client implements Runnable {
 
     public Client(Socket socket) {
         this.socket = socket;
+//        loadCarArrayList(carArrayList);
         new Thread(this).start();
     }
 
@@ -22,8 +23,7 @@ public class Client implements Runnable {
             while (true) {
                 String clientMessage = dis.readUTF();
                 String[] temp = clientMessage.split("\t");
-                System.out.println(clientMessage);
-
+//                System.out.println(clientMessage);
 
                 if (temp[0].equals("LOGIN")) {
                     String loginSuccessful = check(clientMessage);
@@ -33,9 +33,18 @@ public class Client implements Runnable {
                     carArrayList.add(car);
                     dos.writeUTF("ADDED");
                 } else if (temp[0].equals("VIEWALL")) {
+                    loadCarArrayList(carArrayList);
+
                     dos.writeUTF("VIEWALL\t" + carArrayList.size());
+
                     for (Car car : carArrayList) {
-                        dos.writeUTF(car.getRegistrationNumber());
+                        String carInfo = car.getRegistrationNumber() + "\t" + car.getYearMade() + "\t" + car.getColor1() + "\t";
+                        carInfo += car.getColor2() + "\t" + car.getColor3() + "\t" + car.getMaker() + "\t" + car.getModel() + "\t";
+                        carInfo += car.getPrice() + "\t" + car.getQuantity();
+
+//                        System.out.println(carInfo);
+
+                        dos.writeUTF(carInfo);
                     }
                 }
             }
@@ -44,7 +53,26 @@ public class Client implements Runnable {
         }
     }
 
-    String check(String clientUsernameAndPassword) throws IOException {
+    private void loadCarArrayList(ArrayList<Car> carArrayList) {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("D:\\BUET\\Academic\\1-2\\CSE 108\\Car Warehouse\\src\\sample\\car.txt"));
+            String carInfoRaw;
+            while (true) {
+                carInfoRaw = br.readLine();
+                if (carInfoRaw == null) break;
+                String[] cars = carInfoRaw.split("\t");
+                Car newCar = new Car(cars[0], Integer.parseInt(cars[1]), cars[2], cars[3], cars[4], cars[5], cars[6], Integer.parseInt(cars[7]), Integer.parseInt(cars[8]));
+//                System.out.println(newCar);
+                carArrayList.add(newCar);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private String check(String clientUsernameAndPassword) throws IOException {
         String[] usernameAndPass = clientUsernameAndPassword.split("\t");
         BufferedReader br = new BufferedReader(new FileReader("D:\\BUET\\Academic\\1-2\\CSE 108\\Car Warehouse\\src\\sample\\UsernamePassword.txt"));
         String pair;

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="430.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="sample.ViewAllCarsManufacturer">
+<AnchorPane prefHeight="460.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ViewAllCarsManufacturer">
     <children>
-        <TableView fx:id="carDataTable" layoutX="37.0" layoutY="26.0" prefHeight="400.0" prefWidth="675.0">
+        <TableView fx:id="carDataTable" layoutX="33.0" layoutY="21.0" prefHeight="400.0" prefWidth="675.0">
             <columns>
                 <TableColumn fx:id="regNo" prefWidth="75.0" text="Reg. No." />
                 <TableColumn fx:id="yearMade" prefWidth="75.0" text="Year Made" />
@@ -19,5 +20,7 @@
                 <TableColumn fx:id="quantity" prefWidth="75.0" text="Quantity" />
             </columns>
         </TableView>
+      <Button layoutX="577.0" layoutY="427.0" mnemonicParsing="false" onAction="#onReturnToHomeManufPressed" text="Return to Home Page" />
+      <Button layoutX="33.0" layoutY="427.0" mnemonicParsing="false" onAction="#onLogoutManufPressed" text="Logout" />
     </children>
 </AnchorPane>

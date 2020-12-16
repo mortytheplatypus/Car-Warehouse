@@ -45,6 +45,7 @@ public class LoginController {
         cancelButton.setDisable(true);
     }
 
+    @FXML
     public void handleKeyReleased(KeyEvent keyEvent) {
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -53,6 +54,7 @@ public class LoginController {
         cancelButton.setDisable(disabled);
     }
 
+    @FXML
     public void onReturnToMainPage(ActionEvent event) throws IOException {
         Parent loginPageParent = FXMLLoader.load(getClass().getResource("Start.fxml"));
         Scene loginPageScene = new Scene(loginPageParent);
@@ -62,7 +64,7 @@ public class LoginController {
     }
 
     @FXML
-    public void onLoginButtonPressed(ActionEvent event) throws IOException {
+    public void onLoginButtonPressed(ActionEvent event) {
         String username = usernameField.getText();
         String password = passwordField.getText();
         String usernameAndPassword = "LOGIN" + "\t" + username + "\t" + password;

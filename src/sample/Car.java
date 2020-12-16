@@ -9,17 +9,6 @@ public class Car {
     private int price;
     private int quantity;
 
-    public Car() {
-        this.registrationNumber = "";
-        this.yearMade = 0;
-        this.color[0] = "";
-        this.color[1] = "";
-        this.color[2] = "";
-        this.maker = "";
-        this.model = "";
-        this.price = 0;
-    }
-
     public Car(String registrationNumber, int yearMade, String color1, String color2, String color3, String maker, String model, int price, int quantity) {
         this.registrationNumber = registrationNumber;
         this.yearMade = yearMade;
