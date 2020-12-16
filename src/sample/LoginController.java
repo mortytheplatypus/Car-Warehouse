@@ -79,7 +79,7 @@ public class LoginController {
                 } else {
                     Parent loginPageParent = null;
                     try {
-                        loginPageParent = FXMLLoader.load(getClass().getResource("ManufacturerHome.fxml"));
+                        loginPageParent = FXMLLoader.load(getClass().getResource("ViewAllCarsManufacturer.fxml"));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

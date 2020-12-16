@@ -1,39 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ColorPicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddNewCar">
-   <children>
-      <AnchorPane prefHeight="341.0" prefWidth="450.0">
+<DialogPane prefHeight="350.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddNewCar">
+   <content>
+      <GridPane hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="575.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-              <Label layoutX="15.0" layoutY="8.0" prefHeight="25" prefWidth="125.0" text="Registration No." />
-              <TextField fx:id="newRegNo" layoutX="140.0" layoutY="8.0" prefWidth="250" />
+              <Label prefHeight="25" prefWidth="125.0" text="Registration No.">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+              <TextField fx:id="newRegNo" prefWidth="250" GridPane.columnIndex="1" />
       
-                    <Label layoutX="15.0" layoutY="43.0" prefHeight="25" prefWidth="125.0" text="Maker" />
-              <TextField fx:id="newManufacturer" layoutX="140.0" layoutY="43.0" prefWidth="250" />
+                                            <Label prefHeight="25" prefWidth="125.0" text="Maker" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+              <TextField fx:id="newManufacturer" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       
-                    <Label layoutX="15.0" layoutY="78.0" prefHeight="25" prefWidth="125.0" text="Model" />
-              <TextField fx:id="newModel" layoutX="140.0" layoutY="78.0" prefWidth="250" />
+                                            <Label prefHeight="25" prefWidth="125.0" text="Model" GridPane.rowIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+              <TextField fx:id="newModel" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       
-                    <Label layoutX="15.0" layoutY="113.0" prefHeight="25.0" prefWidth="125.0" text="Color(s)" />
-              <ColorPicker fx:id="newColor1" layoutX="140.0" layoutY="115.0" prefHeight="26.0" prefWidth="125.0" />
-              <ColorPicker fx:id="newColor2" layoutX="140.0" layoutY="151.0" />
-              <ColorPicker fx:id="newColor3" layoutX="140.0" layoutY="187.0" />
+                                            <Label prefHeight="25.0" prefWidth="125.0" text="Color(s)" GridPane.rowIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+              <ColorPicker fx:id="newColor1" prefHeight="26.0" prefWidth="125.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+              <ColorPicker fx:id="newColor2" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+              <ColorPicker fx:id="newColor3" GridPane.columnIndex="1" GridPane.rowIndex="5" />
       
-                    <Label layoutX="15.0" layoutY="229.0" prefHeight="17.0" prefWidth="125.0" text="Year of Manufacture" />
-              <TextField fx:id="newYearOfManufacture" layoutX="140.0" layoutY="225.0" prefWidth="250" />
+                                            <Label prefHeight="20.0" prefWidth="135.0" text="Year of Manufacture" GridPane.rowIndex="6">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+              <TextField fx:id="newYearOfManufacture" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="6" />
       
-                    <Label layoutX="15.0" layoutY="263.0" prefHeight="25" prefWidth="125.0" text="Price" />
-              <TextField fx:id="newPrice" layoutX="140.0" layoutY="263.0" prefWidth="250" />
-      
-                    <Button layoutX="390.0" layoutY="308.0" onAction="#OnCancelPressed" text="Cancel" />
-            <Button fx:id="confirmOnAddNewCar" layoutX="224.0" layoutY="308.0" onAction="#onConfirmPressed" text="Confirm" />
+                                            <Label prefHeight="25" prefWidth="125.0" text="Price" GridPane.rowIndex="7">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+              <TextField fx:id="newPrice" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Button mnemonicParsing="false" onAction="#OnCancelPressed" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#onConfirmPressed" text="Confirm" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
          </children>
-      </AnchorPane>
-   </children>
-</StackPane>
+      </GridPane>
+   </content>
+</DialogPane>

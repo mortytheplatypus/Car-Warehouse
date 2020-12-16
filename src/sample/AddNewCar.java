@@ -43,11 +43,12 @@ public class AddNewCar {
 
     @FXML
     public void OnCancelPressed(ActionEvent event) throws Exception {
-        Parent loginPageParent = FXMLLoader.load(getClass().getResource("ManufacturerHome.fxml"));
-        Scene loginPageScene = new Scene(loginPageParent);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(loginPageScene);
-        stage.show();
+//        Parent loginPageParent = FXMLLoader.load(getClass().getResource("ManufacturerHome.fxml"));
+//        Scene loginPageScene = new Scene(loginPageParent);
+//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        stage.setScene(loginPageScene);
+//        stage.show();
+
     }
 
     @FXML

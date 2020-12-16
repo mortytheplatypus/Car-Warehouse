@@ -7,15 +7,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class ViewAllCarsManufacturer {
+    @FXML
+    private AnchorPane mainAnchorPane;
+    @FXML
+    private Button addNewCarButton;
+    @FXML
+    private Button editACarButton;
     @FXML
     private TableView<Car> carDataTable;
 
@@ -105,5 +113,22 @@ public class ViewAllCarsManufacturer {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(loginPageScene);
         stage.show();
+    }
+
+    public void onAddNewCarButtonPressed() {
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(mainAnchorPane.getScene().getWindow());
+        dialog.setTitle("Add a new car");
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("AddNewCar.fxml"));
+
+        try {
+            dialog.getDialogPane().setContent(fxmlLoader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        dialog.show();
     }
 }
