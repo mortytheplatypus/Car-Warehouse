@@ -4,6 +4,3 @@ MARY	2017	Grey	Blue	Red	BMW	116d	55132	3
 38000	2012	Blue	Green	Grey	Honda	Civic	9200	2
 DarkKnight	2008	Blue	Grey	White	Nolan	Comicbook/Action/Adventure	530000000	3
 Dhaka-M-234	1992	0xe64d4dff	0x663366ff	0x669966ff	Lamburghini	Shine	23546	2
-Dinajpur-Ha-90878	2011	0x990000ff	0xccffffff	0x4d001aff	Ducati	Veron	32432	1
-BUET	1961	0x4d001aff	0xffffffff	0xffffffff	kijani	EPUET	1	1
-habijabi	2018	0xffffffff	0xffffffff	0xffffffff	hudai	khamakha	23423	1

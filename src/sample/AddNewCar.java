@@ -39,16 +39,15 @@ public class AddNewCar {
     private TextField newPrice;
 
     @FXML
-    public Button confirmOnAddNewCar;
-
-    @FXML
-    public void OnCancelPressed(ActionEvent event) throws Exception {
-//        Parent loginPageParent = FXMLLoader.load(getClass().getResource("ManufacturerHome.fxml"));
-//        Scene loginPageScene = new Scene(loginPageParent);
-//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        stage.setScene(loginPageScene);
-//        stage.show();
-
+    public void OnClearPressed(ActionEvent event) {
+        newRegNo.clear();
+        newYearOfManufacture.clear();
+        newColor1.setValue(Color.WHITE);
+        newColor2.setValue(Color.WHITE);
+        newColor3.setValue(Color.WHITE);
+        newManufacturer.clear();
+        newModel.clear();
+        newPrice.clear();
     }
 
     @FXML
@@ -64,10 +63,12 @@ public class AddNewCar {
             String receivedData = NetworkUtil.getInstance().receive();
             Platform.runLater(()-> {
                 if (receivedData.equals("ADDED")) {
-                    System.out.println(finalStr);
+//                    System.out.println(finalStr);
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.show();
                 }
             });
-        });
+        }).start();
 
         newRegNo.clear();
         newYearOfManufacture.clear();
@@ -77,9 +78,19 @@ public class AddNewCar {
         newManufacturer.clear();
         newModel.clear();
         newPrice.clear();
+    }
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.show();
+    public void OnReturnToHomePressed(ActionEvent event) {
+        Parent loginPageParent = null;
+        try {
+            loginPageParent = FXMLLoader.load(getClass().getResource("ViewAllCarsManufacturer.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene loginPageScene = new Scene(loginPageParent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(loginPageScene);
+        stage.show();
     }
 }
 

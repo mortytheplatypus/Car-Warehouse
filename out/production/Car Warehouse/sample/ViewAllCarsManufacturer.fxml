@@ -6,15 +6,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchorPane" prefHeight="509.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ViewAllCarsManufacturer">
+<AnchorPane prefHeight="509.0" prefWidth="744.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="sample.ViewAllCarsManufacturer">
     <children>
         <TableView fx:id="carDataTable" layoutX="33.0" layoutY="55.0" prefHeight="400.0" prefWidth="675.0">
             <columns>
                 <TableColumn fx:id="regNo" prefWidth="75.0" text="Reg. No." />
                 <TableColumn fx:id="yearMade" prefWidth="75.0" text="Year Made" />
-                <TableColumn fx:id="color1" prefWidth="75.0" text="Color" />
-                <TableColumn fx:id="color2" prefWidth="75.0" text="Color" />
-                <TableColumn fx:id="color3" prefWidth="75.0" text="Color" />
+                <TableColumn fx:id="color1" prefWidth="75.0" text="Color1" />
+                <TableColumn fx:id="color2" prefWidth="75.0" text="Color2" />
+                <TableColumn fx:id="color3" prefWidth="75.0" text="Color3" />
                 <TableColumn fx:id="maker" prefWidth="75.0" text="Maker" />
                 <TableColumn fx:id="model" prefWidth="75.0" text="Model" />
                 <TableColumn fx:id="price" prefWidth="75.0" text="Price" />
