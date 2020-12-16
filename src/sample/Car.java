@@ -7,7 +7,7 @@ public class Car {
     private String maker;
     private String model;
     private int price;
-    private static int quantity;
+    private int quantity;
 
     public Car() {
         this.registrationNumber = "";
@@ -20,7 +20,7 @@ public class Car {
         this.price = 0;
     }
 
-    public Car(String registrationNumber, int yearMade, String color1, String color2, String color3, String maker, String model, int price) {
+    public Car(String registrationNumber, int yearMade, String color1, String color2, String color3, String maker, String model, int price, int quantity) {
         this.registrationNumber = registrationNumber;
         this.yearMade = yearMade;
         this.color[0] = color1;
@@ -29,7 +29,7 @@ public class Car {
         this.maker = maker;
         this.model = model;
         this.price = price;
-        quantity++;
+        this.quantity = quantity;
     }
 
     @Override
@@ -64,7 +64,6 @@ public class Car {
     public String getColor1() {
         return color[0];
     }
-
     public String getColor2() {
         return color[1];
     }
@@ -76,7 +75,7 @@ public class Car {
         return price;
     }
 
-    public static int getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 }

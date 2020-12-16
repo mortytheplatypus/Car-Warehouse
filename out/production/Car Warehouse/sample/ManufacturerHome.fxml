@@ -4,11 +4,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="sample.ManufacturerHome">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ManufacturerHome">
    <children>
       <Button layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#onLogoutButtonPressed" text="Logout" />
-      <Button layoutX="274.0" layoutY="132.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="124.0" text="Add New Car"
-              onAction="#addNewCar">
+      <Button layoutX="274.0" layoutY="132.0" mnemonicParsing="false" onAction="#addNewCar" prefHeight="50.0" prefWidth="124.0" text="Add New Car">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="274.0" layoutY="200.0" mnemonicParsing="false" onAction="#viewAllCars" prefHeight="50.0" prefWidth="124.0" text="View All Cars">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

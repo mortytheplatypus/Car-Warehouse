@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,22 +67,29 @@ public class LoginController {
         String password = passwordField.getText();
         String usernameAndPassword = "LOGIN" + "\t" + username + "\t" + password;
 
-        Socket socket = new Socket("127.0.0.1", 55555);
+        NetworkUtil.getInstance().send(usernameAndPassword);
 
-        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-        DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+        new Thread(() -> {
+            String receivedData = NetworkUtil.getInstance().receive();
+            Platform.runLater(()-> {
+                if (receivedData.equals("FALSE")) {
+                    warning.setText("  Wrong username or password. Try again.");
+                } else {
+                    Parent loginPageParent = null;
+                    try {
+                        loginPageParent = FXMLLoader.load(getClass().getResource("ManufacturerHome.fxml"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Scene loginPageScene = new Scene(loginPageParent);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(loginPageScene);
+                    stage.show();
+                }
+            });
 
-        dataOutputStream.writeUTF(usernameAndPassword);
+        }).start();
 
-        if (!dataInputStream.readBoolean()) {
-            warning.setText("  Wrong username or password. Try again.");
-        } else {
-            Parent loginPageParent = FXMLLoader.load(getClass().getResource("ManufacturerHome.fxml"));
-            Scene loginPageScene = new Scene(loginPageParent);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(loginPageScene);
-            stage.show();
-        }
     }
 
 }

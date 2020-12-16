@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ManufacturerHome {
     @FXML
@@ -30,5 +31,23 @@ public class ManufacturerHome {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(loginPageScene);
         stage.show();
+    }
+
+    public void viewAllCars(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewAllCarsManufacturer.fxml"));
+        Parent loginPageParent = loader.load();
+
+        Scene loginPageScene = new Scene(loginPageParent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(loginPageScene);
+        stage.show();
+
+//        ArrayList<Car> carArrayList = new ArrayList<>();
+//        Car car = new Car("2332", 2020, "hgask", "hdsag", "adsff", "asdkf", "fuck", 23423, 2);
+//        carArrayList.add(car);
+//
+//        ViewAllCarsManufacturer viewAllCarsManufacturer = loader.getController();
+//        viewAllCarsManufacturer.addCar(carArrayList);
+
     }
 }

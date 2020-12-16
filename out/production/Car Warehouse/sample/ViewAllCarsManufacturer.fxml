@@ -1,18 +1,22 @@
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0"
-            xmlns:fx="http://javafx.com/fxml" fx:controller="sample.ViewAllCarsManufacturer">
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="430.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="sample.ViewAllCarsManufacturer">
     <children>
-        <TableView layoutX="59.0" layoutY="37.0" prefHeight="349.0" prefWidth="527.0">
+        <TableView fx:id="carDataTable" layoutX="37.0" layoutY="26.0" prefHeight="400.0" prefWidth="675.0">
             <columns>
-                <TableColumn prefWidth="75.0" text="Reg. No." />
-                <TableColumn prefWidth="75.0" text="Year Made" />
-                <TableColumn prefWidth="75.0" text="Color" />
-                <TableColumn prefWidth="75.0" text="Maker" />
-                <TableColumn prefWidth="75.0" text="Model" />
-                <TableColumn prefWidth="75.0" text="Price" />
-                <TableColumn prefWidth="75.0" text="Quantity" />
+                <TableColumn fx:id="regNo" prefWidth="75.0" text="Reg. No." />
+                <TableColumn fx:id="yearMade" prefWidth="75.0" text="Year Made" />
+                <TableColumn fx:id="color1" prefWidth="75.0" text="Color" />
+                <TableColumn fx:id="color2" prefWidth="75.0" text="Color" />
+                <TableColumn fx:id="color3" prefWidth="75.0" text="Color" />
+                <TableColumn fx:id="maker" prefWidth="75.0" text="Maker" />
+                <TableColumn fx:id="model" prefWidth="75.0" text="Model" />
+                <TableColumn fx:id="price" prefWidth="75.0" text="Price" />
+                <TableColumn fx:id="quantity" prefWidth="75.0" text="Quantity" />
             </columns>
         </TableView>
     </children>

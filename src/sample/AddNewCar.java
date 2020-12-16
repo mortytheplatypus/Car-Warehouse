@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -56,18 +58,23 @@ public class AddNewCar {
         stage.show();
     }
 
-
     @FXML
     public void onConfirmPressed(ActionEvent event) throws IOException {
         String str = "NEWCAR" + "\t" + newRegNo.getText() + "\t" + newYearOfManufacture.getText() + "\t";
         str += newColor1.getValue() + "\t" + newColor2.getValue() + "\t" + newColor3.getValue() + "\t";
-        str += newManufacturer + "\t" + newModel + "\t" + newPrice;
+        str += newManufacturer.getText() + "\t" + newModel.getText() + "\t" + newPrice.getText();
 
-        Socket socket = new Socket("localhost", 55555);
-        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-        DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+        NetworkUtil.getInstance().send(str);
 
-        dataOutputStream.writeUTF(str);
+        String finalStr = str;
+        new Thread(()-> {
+            String receivedData = NetworkUtil.getInstance().receive();
+            Platform.runLater(()-> {
+                if (receivedData.equals("ADDED")) {
+                    System.out.println(finalStr);
+                }
+            });
+        });
     }
 }
 
