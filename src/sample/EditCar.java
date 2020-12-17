@@ -1,0 +1,49 @@
+package sample;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.TextField;
+
+public class EditCar {
+
+    @FXML
+    private TextField newRegNo;
+
+    @FXML
+    private TextField newManufacturer;
+
+    @FXML
+    private TextField newModel;
+
+    @FXML
+    private ColorPicker newColor1;
+
+    @FXML
+    private ColorPicker newColor2;
+
+    @FXML
+    private ColorPicker newColor3;
+
+    @FXML
+    private TextField newYearOfManufacture;
+
+    @FXML
+    private TextField newPrice;
+
+    @FXML
+    void OnClearPressed(ActionEvent event) {
+
+    }
+
+    @FXML
+    void OnReturnToHomePressed(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onConfirmPressed(ActionEvent event) {
+
+    }
+
+}

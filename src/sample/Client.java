@@ -46,11 +46,26 @@ public class Client implements Runnable {
 
                         dos.writeUTF(carInfo);
                     }
+                } else if (temp[0].equals("DELETE")) {
+                    for (Car car : carArrayList) {
+                        if (car.getRegistrationNumber().equals(temp[1])) {
+                            carArrayList.remove(car);
+                            saveCarArrayList(carArrayList);
+                            dos.writeUTF("DELETED");
+                            break;
+                        }
+                    }
+                } else if (temp[0].equals("EDIT")) {
+                    editCarMethod(dis, dos, temp);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void editCarMethod(DataInputStream dis, DataOutputStream dos, String[] temp) {
+
     }
 
     private void saveCarArrayList(ArrayList<Car> carArrayList) {

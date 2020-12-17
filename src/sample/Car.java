@@ -23,16 +23,22 @@ public class Car {
 
     @Override
     public String toString() {
-        return "\n\t\t\t\t\tRegistration Number: " + "\u001B[36m" + this.registrationNumber + "\n" + "\u001B[0m" +
-                "\t\t\t\t\tYear of manufacture: " + "\u001B[32m"  + this.yearMade + "\n" + "\u001B[0m"  +
-                "\t\t\t\t\t           Color(s): " + "\n" +
-                "\t\t\t\t\t\t                   " + this.color[0] + "\n" +
-                "\t\t\t\t\t\t                   " + this.color[1] + "\n" +
-                "\t\t\t\t\t\t                   " + this.color[2] + "\n" +
-                "\t\t\t\t\t              Maker: " + "\u001B[36m"  + this.maker +  "\n" + "\u001B[0m"  +
-                "\t\t\t\t\t              Model: " + "\u001B[36m"  + this.model +  "\n" + "\u001B[0m"  +
-                "\t\t\t\t\t              Price: " + "\u001B[32m"  + this.price + "\u001B[0m" + "\n";
+        return this.registrationNumber + "\t" + this.yearMade + "\t" + this.color[0] + "\t" + this.color[1] + "\t" + this.color[2] + "\t"
+                + this.maker + "\t" + this.model + "\t" + this.price + "\t" + this.quantity;
     }
+
+//    @Override
+//    public String toString() {
+//        return "\n\t\t\t\t\tRegistration Number: " + "\u001B[36m" + this.registrationNumber + "\n" + "\u001B[0m" +
+//                "\t\t\t\t\tYear of manufacture: " + "\u001B[32m"  + this.yearMade + "\n" + "\u001B[0m"  +
+//                "\t\t\t\t\t           Color(s): " + "\n" +
+//                "\t\t\t\t\t\t                   " + this.color[0] + "\n" +
+//                "\t\t\t\t\t\t                   " + this.color[1] + "\n" +
+//                "\t\t\t\t\t\t                   " + this.color[2] + "\n" +
+//                "\t\t\t\t\t              Maker: " + "\u001B[36m"  + this.maker +  "\n" + "\u001B[0m"  +
+//                "\t\t\t\t\t              Model: " + "\u001B[36m"  + this.model +  "\n" + "\u001B[0m"  +
+//                "\t\t\t\t\t              Price: " + "\u001B[32m"  + this.price + "\u001B[0m" + "\n";
+//    }
 
     public String getRegistrationNumber() {
         return registrationNumber;

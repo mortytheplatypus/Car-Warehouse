@@ -1,6 +1,8 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,12 +10,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class ViewAllCarsManufacturer {
+    @FXML
+    private AnchorPane mainAnchorPane;
+
     @FXML
     private TableView<Car> carDataTable = new TableView<>();
 
@@ -45,6 +54,7 @@ public class ViewAllCarsManufacturer {
     private TableColumn<Car, Integer> quantity;
 
     public void initialize() {
+//        System.out.println("\t\t\t\t\tInitialized baby");
         regNo.setCellValueFactory(new PropertyValueFactory<>("registrationNumber"));
         yearMade.setCellValueFactory(new PropertyValueFactory<>("yearMade"));
         color1.setCellValueFactory(new PropertyValueFactory<>("color1"));
@@ -54,7 +64,6 @@ public class ViewAllCarsManufacturer {
         model.setCellValueFactory(new PropertyValueFactory<>("model"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
         quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-
 
         NetworkUtil.getInstance().send("VIEWALL\t");
 
@@ -99,11 +108,80 @@ public class ViewAllCarsManufacturer {
 //        stage.show();
 //    }
 
+    @FXML
     public void onAddNewCarButtonPressed(ActionEvent event) throws IOException {
         Parent loginPageParent = FXMLLoader.load(getClass().getResource("AddNewCar.fxml"));
         Scene loginPageScene = new Scene(loginPageParent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(loginPageScene);
         stage.show();
+    }
+
+    @FXML
+    public void onDeleteContextMenu(ActionEvent event) {
+        Car car = carDataTable.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete car");
+        alert.setHeaderText("Delete car: " + car.getRegistrationNumber());
+        alert.setContentText("Are you sure? Press OK to confirm, or CANCEL to back out.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && (result.get() == ButtonType.OK)) {
+            NetworkUtil.getInstance().send("DELETE\t" + car.getRegistrationNumber());
+
+//            new Thread(()-> {
+//                String receivedData = NetworkUtil.getInstance().receive();
+//                Platform.runLater(()-> {
+//                    if (receivedData.equals("DELETED")) {
+//                       new Alert(Alert.AlertType.).setContentText("Car with registration no. " + car.getRegistrationNumber() + " is removed successfully.");
+//                    }
+//                    //////////////////////////////////////////////////////////////////////////////////////////
+//                    //////////////////////////////////////////////////////////////////////////////////////////
+//                });
+//            }).start();
+        }
+    }
+
+    @FXML
+    private void refreshThisPage(ActionEvent event) throws IOException {
+        Parent loginPageParent = FXMLLoader.load(getClass().getResource("ViewAllCarsManufacturer.fxml"));
+        Scene loginPageScene = new Scene(loginPageParent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(loginPageScene);
+        stage.show();
+    }
+
+    public void onEditContextMenu(ActionEvent event) {
+        Car car = carDataTable.getSelectionModel().getSelectedItem();
+
+        NetworkUtil.getInstance().send("EDIT\t" + car.toString());
+
+        new Thread(()-> {
+            String receivedData = NetworkUtil.getInstance().receive();
+
+        }).start();
+
+//        Dialog<ButtonType> dialog = new Dialog<>();
+//        dialog.initOwner(mainAnchorPane.getScene().getWindow());
+//        dialog.setTitle("Edit car information");
+//        FXMLLoader fxmlLoader = new FXMLLoader();
+//
+//        fxmlLoader.setLocation(getClass().getResource("D:\\BUET\\Academic\\1-2\\CSE 108\\Car Warehouse\\src\\sample\\EditCar.fxml"));
+//
+//        try {
+//            dialog.getDialogPane().setContent(fxmlLoader.load());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return;
+//        }
+//
+//        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+//        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+//
+//        Optional<ButtonType> result = dialog.showAndWait();
+//        if (result.isPresent() && result.get()==ButtonType.OK) {
+//
+//        }
     }
 }
