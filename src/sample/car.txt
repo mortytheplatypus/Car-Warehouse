@@ -2,4 +2,4 @@
 ABC132	2007	Yellow	Red	Blue	Toyota	Corolla	5900	1
 DarkKnight	2008	Blue	Grey	White	Nolan	Comicbook/Action/Adventure	530000000	3
 abcxyz789	2002	0xccffffff	0xffffffff	0xffffffff	Toyota	Corolla	25499	1
-maruf	1998	0x4d001aff	0x333333ff	0x003333ff	creator	human	2	1
+maruf	1998	0x4d001aff	0x333333ff	0x003333ff	creator	human	2	0

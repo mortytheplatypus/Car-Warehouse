@@ -77,16 +77,17 @@ public class LoginController {
                 if (receivedData.equals("FALSE")) {
                     warning.setText("  Wrong username or password. Try again.");
                 } else {
-                    Parent loginPageParent = null;
-                    try {
-                        loginPageParent = FXMLLoader.load(getClass().getResource("ViewAllCarsManufacturer.fxml"));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Scene loginPageScene = new Scene(loginPageParent);
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    stage.setScene(loginPageScene);
-                    stage.show();
+                    new LoadFXMLPage("ViewAllCarsManufacturer.fxml", event);
+//                    Parent loginPageParent = null;
+//                    try {
+//                        loginPageParent = FXMLLoader.load(getClass().getResource("ViewAllCarsManufacturer.fxml"));
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    Scene loginPageScene = new Scene(loginPageParent);
+//                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//                    stage.setScene(loginPageScene);
+//                    stage.show();
                 }
             });
 

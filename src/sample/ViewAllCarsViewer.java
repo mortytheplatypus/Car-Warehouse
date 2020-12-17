@@ -1,13 +1,13 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -18,6 +18,9 @@ public class ViewAllCarsViewer {
 
     @FXML
     private AnchorPane mainAnchorPane;
+
+    @FXML
+    private MenuItem buyMenuItem;
 
     @FXML
     private TableView<Car> carDataTable;
@@ -73,6 +76,7 @@ public class ViewAllCarsViewer {
                 carDataTable.getItems().add(car);
             }
         }).start();
+
     }
 
     @FXML
@@ -83,5 +87,22 @@ public class ViewAllCarsViewer {
     @FXML
     public void returnToMainPage(ActionEvent event) throws IOException {
         new LoadFXMLPage("Start.fxml", event);
+    }
+
+    public void onBuyContextMenu(ActionEvent event) {
+        Car car = carDataTable.getSelectionModel().getSelectedItem();
+
+        NetworkUtil.getInstance().send("BUY\t" + car.getRegistrationNumber());
+
+        new Thread(()-> {
+            String buyingMessage = NetworkUtil.getInstance().receive();
+            Platform.runLater(()-> {
+                if (buyingMessage.equals("BOUGHT")) {
+                    new Alert(Alert.AlertType.CONFIRMATION).show();
+                } else {
+                    new Alert((Alert.AlertType.ERROR)).show();
+                }
+            });
+        }).start();
     }
 }

@@ -73,4 +73,8 @@ public class Car {
     public int getQuantity() {
         return quantity;
     }
+
+    public void reduceQuantity() {
+        this.quantity--;
+    }
 }

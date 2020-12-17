@@ -56,7 +56,21 @@ public class Client implements Runnable {
                         }
                     }
                 } else if (temp[0].equals("EDIT")) {
-                    editCarMethod(dis, dos, temp);
+                    //Work to be done
+
+                } else if (temp[0].equals("BUY")) {
+                    String buyMessage = "NOTBOUGHT";
+                    for (Car car : carArrayList) {
+                        if (car.getRegistrationNumber().equals(temp[1])) {
+                            if (car.getQuantity()>0) {
+                                buyMessage = "BOUGHT";
+                                car.reduceQuantity();
+                            }
+                            saveCarArrayList(carArrayList);
+                            break;
+                        }
+                    }
+                    dos.writeUTF(buyMessage);
                 }
             }
         } catch (IOException e) {

@@ -64,8 +64,7 @@ public class AddNewCar {
             Platform.runLater(()-> {
                 if (receivedData.equals("ADDED")) {
 //                    System.out.println(finalStr);
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.show();
+                    new Alert(Alert.AlertType.CONFIRMATION).show();
                 }
             });
         }).start();
