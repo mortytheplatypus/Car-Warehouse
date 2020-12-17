@@ -23,7 +23,7 @@ public class Client implements Runnable {
             while (true) {
                 String clientMessage = dis.readUTF();
                 String[] temp = clientMessage.split("\t");
-                System.out.println("\t\t\t\t\t\t" + clientMessage);
+//                System.out.println("\t\t\t\t\t\t" + clientMessage);
 
                 if (temp[0].equals("LOGIN")) {
                     String loginSuccessful = check(clientMessage);
@@ -65,6 +65,8 @@ public class Client implements Runnable {
     }
 
     private void editCarMethod(DataInputStream dis, DataOutputStream dos, String[] temp) {
+        Car car = new Car(temp[1], Integer.parseInt(temp[2]), temp[3], temp[4], temp[5], temp[6], temp[7], Integer.parseInt(temp[8]), Integer.parseInt(temp[9]));
+
 
     }
 
@@ -98,11 +100,11 @@ public class Client implements Runnable {
             String carInfoRaw;
             while (true) {
                 carInfoRaw = br.readLine();
-                System.out.println(carInfoRaw);
+//                System.out.println(carInfoRaw);
                 if (carInfoRaw == null) break;
                 String[] cars = carInfoRaw.split("\t");
-                System.out.println("\u001B[36m" + "carInfoRaw:\t\t\t" + "\u001B[0m" + carInfoRaw);
-                System.out.println("\u001B[34m" + "carsLength:\t\t\t" + "\u001B[0m" + cars.length);
+//                System.out.println("\u001B[36m" + "carInfoRaw:\t\t\t" + "\u001B[0m" + carInfoRaw);
+//                System.out.println("\u001B[34m" + "carsLength:\t\t\t" + "\u001B[0m" + cars.length);
                 Car newCar = new Car(cars[0], Integer.parseInt(cars[1]), cars[2], cars[3], cars[4], cars[5], cars[6], Integer.parseInt(cars[7]), Integer.parseInt(cars[8]));
 //                System.out.println(newCar);
                 carArrayList.add(newCar);

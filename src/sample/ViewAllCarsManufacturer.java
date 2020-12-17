@@ -20,8 +20,6 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class ViewAllCarsManufacturer {
-    @FXML
-    private AnchorPane mainAnchorPane;
 
     @FXML
     private TableView<Car> carDataTable = new TableView<>();
@@ -54,7 +52,6 @@ public class ViewAllCarsManufacturer {
     private TableColumn<Car, Integer> quantity;
 
     public void initialize() {
-//        System.out.println("\t\t\t\t\tInitialized baby");
         regNo.setCellValueFactory(new PropertyValueFactory<>("registrationNumber"));
         yearMade.setCellValueFactory(new PropertyValueFactory<>("yearMade"));
         color1.setCellValueFactory(new PropertyValueFactory<>("color1"));
@@ -69,13 +66,11 @@ public class ViewAllCarsManufacturer {
 
         new Thread(()-> {
             String str = NetworkUtil.getInstance().receive();
-//            System.out.println("\t\t\t\t\t\t" + str);
             String[] splited = str.split("\t");
             int n = Integer.parseInt(splited[1]);
             for (int i=0; i<n; i++) {
                 String carInfo = NetworkUtil.getInstance().receive();
                 String[] s = carInfo.split("\t");
-                System.out.println("\u001B[36m" + carInfo);
                 Car car = new Car(s[0], Integer.parseInt(s[1]), s[2], s[3], s[4], s[5], s[6], Integer.parseInt(s[7]), Integer.parseInt(s[8]));
                 carDataTable.getItems().add(car);
             }
@@ -141,16 +136,5 @@ public class ViewAllCarsManufacturer {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(loginPageScene);
         stage.show();
-    }
-
-    public void onEditContextMenu(ActionEvent event) {
-        Car car = carDataTable.getSelectionModel().getSelectedItem();
-
-        NetworkUtil.getInstance().send("EDIT\t" + car.toString());
-
-        new Thread(()-> {
-            String receivedData = NetworkUtil.getInstance().receive();
-
-        }).start();
     }
 }

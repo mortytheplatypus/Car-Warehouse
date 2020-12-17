@@ -31,6 +31,12 @@ public class EditCar {
     @FXML
     private TextField newPrice;
 
+    public void initialize() {
+        String str = NetworkUtil.getInstance().receive();
+        String[] splitedStr = str.split("\t");
+        newRegNo.setText("12345");
+    }
+
     @FXML
     void OnClearPressed(ActionEvent event) {
 
