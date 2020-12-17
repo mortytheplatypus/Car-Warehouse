@@ -82,6 +82,7 @@ public class ViewAllCarsManufacturer {
         }).start();
     }
 
+    @FXML
     public void onLogoutManufPressed(ActionEvent event) {
         Parent logoutParent = null;
         try {
@@ -94,19 +95,6 @@ public class ViewAllCarsManufacturer {
         stage.setScene(loginPageScene);
         stage.show();
     }
-
-//    public void onReturnToHomeManufPressed(ActionEvent event) {
-//        Parent manufacturerHomeParent = null;
-//        try {
-//            manufacturerHomeParent = FXMLLoader.load(getClass().getResource("ManufacturerHome.fxml"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        Scene loginPageScene = new Scene(manufacturerHomeParent);
-//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        stage.setScene(loginPageScene);
-//        stage.show();
-//    }
 
     @FXML
     public void onAddNewCarButtonPressed(ActionEvent event) throws IOException {
@@ -130,16 +118,19 @@ public class ViewAllCarsManufacturer {
         if (result.isPresent() && (result.get() == ButtonType.OK)) {
             NetworkUtil.getInstance().send("DELETE\t" + car.getRegistrationNumber());
 
-//            new Thread(()-> {
-//                String receivedData = NetworkUtil.getInstance().receive();
-//                Platform.runLater(()-> {
-//                    if (receivedData.equals("DELETED")) {
-//                       new Alert(Alert.AlertType.).setContentText("Car with registration no. " + car.getRegistrationNumber() + " is removed successfully.");
-//                    }
-//                    //////////////////////////////////////////////////////////////////////////////////////////
-//                    //////////////////////////////////////////////////////////////////////////////////////////
-//                });
-//            }).start();
+            new Thread(()-> {
+                String receivedData = NetworkUtil.getInstance().receive();
+                if (receivedData.equals("DELETED")) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("ViewAllCarsManufacturer.fxml"));
+                    try {
+                        fxmlLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }).start();
         }
     }
 
@@ -161,27 +152,5 @@ public class ViewAllCarsManufacturer {
             String receivedData = NetworkUtil.getInstance().receive();
 
         }).start();
-
-//        Dialog<ButtonType> dialog = new Dialog<>();
-//        dialog.initOwner(mainAnchorPane.getScene().getWindow());
-//        dialog.setTitle("Edit car information");
-//        FXMLLoader fxmlLoader = new FXMLLoader();
-//
-//        fxmlLoader.setLocation(getClass().getResource("D:\\BUET\\Academic\\1-2\\CSE 108\\Car Warehouse\\src\\sample\\EditCar.fxml"));
-//
-//        try {
-//            dialog.getDialogPane().setContent(fxmlLoader.load());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return;
-//        }
-//
-//        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
-//        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
-//
-//        Optional<ButtonType> result = dialog.showAndWait();
-//        if (result.isPresent() && result.get()==ButtonType.OK) {
-//
-//        }
     }
 }

@@ -8,10 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="509.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:id="mainAnchorPane" fx:controller="sample.ViewAllCarsManufacturer">
+<AnchorPane fx:id="mainAnchorPane" prefHeight="509.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ViewAllCarsManufacturer">
     <children>
-        <TableView fx:id="carDataTable" layoutX="58.0" layoutY="65.0" prefHeight="400.0" prefWidth="675.0">
+        <TableView fx:id="carDataTable" layoutX="34.0" layoutY="54.0" prefHeight="400.0" prefWidth="675.0">
             <columns>
                 <TableColumn fx:id="regNo" prefWidth="75.0" text="Reg. No." />
                 <TableColumn fx:id="yearMade" prefWidth="75.0" text="Year Made" />
@@ -24,10 +23,10 @@
                 <TableColumn fx:id="quantity" prefWidth="75.0" text="Quantity" />
             </columns>
          <contextMenu>
-            <ContextMenu onAction="#onDeleteContextMenu">
+            <ContextMenu>
               <items>
                     <MenuItem mnemonicParsing="false" onAction="#onEditContextMenu" text="Edit" />
-                    <MenuItem mnemonicParsing="false" text="Delete" onAction="#onDeleteContextMenu"/>
+                    <MenuItem mnemonicParsing="false" onAction="#onDeleteContextMenu" text="Delete" />
               </items>
             </ContextMenu>
          </contextMenu>
@@ -40,11 +39,6 @@
          </font>
       </Button>
       <Button fx:id="editACarButton" layoutX="161.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Edit A Car">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="286.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Delete A Car">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
