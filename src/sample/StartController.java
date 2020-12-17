@@ -11,24 +11,21 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class StartController {
 
     @FXML
-    private Button nextScene;
+    public void onManufacturerButtonPressed(ActionEvent event) throws IOException {
+        new LoadFXMLPage("Login.fxml", event);
+    }
 
     @FXML
-    public void onManufacturerButtonPressed(ActionEvent event) throws Exception {
-        Parent loginPageParent = FXMLLoader.load(getClass().getResource("Login.fxml"));
-        Scene loginPageScene = new Scene(loginPageParent);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(loginPageScene);
-        stage.show();
+    public void onViewerButtonPressed(ActionEvent event) throws IOException {
+        new LoadFXMLPage("ViewAllCarsViewer.fxml", event);
     }
 
-    public void onViewerButtonPressed(ActionEvent event) {
-    }
-
-
+    @FXML
     public void onExitButtonPressed(ActionEvent event) {
         Platform.exit();
     }

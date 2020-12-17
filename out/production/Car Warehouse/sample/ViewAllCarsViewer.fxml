@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="mainAnchorPane" prefHeight="509.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sample.ViewAllCarsViewer">
+   <children>
+      <TableView fx:id="carDataTable" layoutX="34.0" layoutY="54.0" prefHeight="400.0" prefWidth="675.0">
+         <columns>
+            <TableColumn fx:id="regNo" prefWidth="75.0" text="Reg. No." />
+            <TableColumn fx:id="yearMade" prefWidth="75.0" text="Year Made" />
+            <TableColumn fx:id="color1" prefWidth="75.0" text="Color1" />
+            <TableColumn fx:id="color2" prefWidth="75.0" text="Color2" />
+            <TableColumn fx:id="color3" prefWidth="75.0" text="Color3" />
+            <TableColumn fx:id="maker" prefWidth="75.0" text="Maker" />
+            <TableColumn fx:id="model" prefWidth="75.0" text="Model" />
+            <TableColumn fx:id="price" prefWidth="75.0" text="Price" />
+            <TableColumn fx:id="quantity" prefWidth="75.0" text="Quantity" />
+         </columns>
+      </TableView>
+      <Button layoutX="654.0" layoutY="465.0" mnemonicParsing="false" onAction="#refreshThisPage" text="Refresh" />
+      <Button layoutX="34.0" layoutY="465.0" mnemonicParsing="false" onAction="#returnToMainPage" text="Return to main page" />
+   </children>
+</AnchorPane>

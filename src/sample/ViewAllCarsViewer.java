@@ -6,23 +6,27 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Optional;
 
-public class ViewAllCarsManufacturer {
+public class ViewAllCarsViewer {
 
     @FXML
-    private TableView<Car> carDataTable = new TableView<>();
+    private AnchorPane mainAnchorPane;
+
+    @FXML
+    private TableView<Car> carDataTable;
 
     @FXML
     private TableColumn<Car, String> regNo;
 
     @FXML
-    private TableColumn<Car, Integer> yearMade;
+    private TableColumn<Car, String> yearMade;
 
     @FXML
     private TableColumn<Car, String> color1;
@@ -34,16 +38,16 @@ public class ViewAllCarsManufacturer {
     private TableColumn<Car, String> color3;
 
     @FXML
-    private TableColumn<Car, String> maker;
+    private TableColumn<Car, String>maker;
 
     @FXML
     private TableColumn<Car, String> model;
 
     @FXML
-    private TableColumn<Car, Integer> price;
+    private TableColumn<Car, String> price;
 
     @FXML
-    private TableColumn<Car, Integer> quantity;
+    private TableColumn<Car, String> quantity;
 
     public void initialize() {
         regNo.setCellValueFactory(new PropertyValueFactory<>("registrationNumber"));
@@ -72,40 +76,12 @@ public class ViewAllCarsManufacturer {
     }
 
     @FXML
-    public void onLogoutManufPressed(ActionEvent event) {
+    void refreshThisPage(ActionEvent event) throws IOException {
+        new LoadFXMLPage("ViewAllCarsViewer.fxml", event);
+    }
+
+    @FXML
+    public void returnToMainPage(ActionEvent event) throws IOException {
         new LoadFXMLPage("Start.fxml", event);
-    }
-
-    @FXML
-    public void onAddNewCarButtonPressed(ActionEvent event) throws IOException {
-        new LoadFXMLPage("AddNewCar.fxml", event);
-    }
-
-    @FXML
-    public void onDeleteContextMenu(ActionEvent event) {
-        Car car = carDataTable.getSelectionModel().getSelectedItem();
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Delete car");
-        alert.setHeaderText("Delete car: " + car.getRegistrationNumber());
-        alert.setContentText("Are you sure? Press OK to confirm, or CANCEL to back out.");
-
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if (result.isPresent() && (result.get() == ButtonType.OK)) {
-            NetworkUtil.getInstance().send("DELETE\t" + car.getRegistrationNumber());
-
-            new Thread(()-> {
-                String receivedData = NetworkUtil.getInstance().receive();
-                if (receivedData.equals("DELETED")) {
-                    new LoadFXMLPage("ViewAllCarsManufacturer.fxml", event);
-
-                }
-            }).start();
-        }
-    }
-
-    @FXML
-    private void refreshThisPage(ActionEvent event) throws IOException {
-        new LoadFXMLPage("ViewAllCarsManufacturer.fxml", event);
     }
 }
