@@ -71,6 +71,38 @@ public class Client implements Runnable {
                         }
                     }
                     dos.writeUTF(buyMessage);
+                } else if (temp[0].equals("SEARCH")) {
+                    carArrayList.clear();
+                    loadCarArrayList(carArrayList);
+
+                    int len=0;
+                    int [] indexes = new int[carArrayList.size()];
+
+                    if (temp[1].equals("REG")) {
+                        for (Car car : carArrayList) {
+                            if (car.getRegistrationNumber().equals(temp[2])) {
+                                indexes[len++] = carArrayList.indexOf(car);
+                            }
+                        }
+                    } else if (temp[1].equals("MnM")) {
+                        for (Car car : carArrayList) {
+                            if (car.getMaker().equals(temp[2]) || car.getModel().equals(temp[2])) {
+                                indexes[len++] = carArrayList.indexOf(car);
+                            }
+                        }
+                    }
+
+                    dos.writeUTF("VIEWSELECTED\t" + len);
+
+                    for (int i=0; i<len; i++) {
+                        Car car = carArrayList.get(indexes[i]);
+
+                        String carInfo = car.getRegistrationNumber() + "\t" + car.getYearMade() + "\t" + car.getColor1() + "\t";
+                        carInfo += car.getColor2() + "\t" + car.getColor3() + "\t" + car.getMaker() + "\t" + car.getModel() + "\t";
+                        carInfo += car.getPrice() + "\t" + car.getQuantity();
+
+                        dos.writeUTF(carInfo);
+                    }
                 }
             }
         } catch (IOException e) {

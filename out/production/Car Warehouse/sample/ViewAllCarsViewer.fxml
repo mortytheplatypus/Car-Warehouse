@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<?import javafx.scene.control.ContextMenu?>
-<?import javafx.scene.control.MenuItem?>
-<AnchorPane fx:id="mainAnchorPane" prefHeight="509.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="sample.ViewAllCarsViewer">
+<AnchorPane fx:id="mainAnchorPane" prefHeight="509.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ViewAllCarsViewer">
    <children>
       <TableView fx:id="carDataTable" layoutX="34.0" layoutY="54.0" prefHeight="400.0" prefWidth="675.0">
          <columns>
@@ -32,5 +31,6 @@
       </TableView>
       <Button layoutX="654.0" layoutY="465.0" mnemonicParsing="false" onAction="#refreshThisPage" text="Refresh" />
       <Button layoutX="34.0" layoutY="465.0" mnemonicParsing="false" onAction="#returnToMainPage" text="Return to main page" />
+      <Button layoutX="584.0" layoutY="14.0" mnemonicParsing="false" onAction="#onSearchCarClicked" prefHeight="25.0" prefWidth="125.0" text="Search Car" />
    </children>
 </AnchorPane>

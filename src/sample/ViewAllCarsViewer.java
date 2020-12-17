@@ -105,4 +105,8 @@ public class ViewAllCarsViewer {
             });
         }).start();
     }
+
+    public void onSearchCarClicked(ActionEvent event) {
+        new LoadFXMLPage("SearchCar.fxml", event);
+    }
 }
