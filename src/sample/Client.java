@@ -68,8 +68,6 @@ public class Client implements Runnable {
                             break;
                         }
                     }
-//                    dos.writeUTF("CARINSTANTIATED");
-
                 } else if (temp[0].equals("EDIT")) {
                     dos.writeUTF(carToBeEditedString);
                 } else if (temp[0].equals("EDITCAR")) {

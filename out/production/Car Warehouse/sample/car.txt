@@ -1,5 +1,5 @@
 1YX98J	2014	Black	White	Red	Toyota	RAV4	25000	1
 ABC132	2007	Yellow	Red	Blue	Toyota	Corolla	5900	1
-DarkKnight	2008	Blue	Grey	White	Nolan	Comicbook/Action/Adventure	530000000	3
+DarkKnight	2008	0x0000ffff	0x808080ff	0xffffffff	Nolan	Comicbook/Action/Adventure	34	3
 abcxyz789	2002	0xccffffff	0xffffffff	0xffffffff	Toyota	Corolla	25499	1
-DhakaMetroB	2013	0xcc3333ff	0xff6666ff	0x663366ff	Honda	NamNai	29899	1
+DhakaMetroB	2013	0xcc3333ff	0xff6666ff	0x663366ff	Honda	NamNai	29899	4

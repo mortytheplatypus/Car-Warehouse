@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchorPane" prefHeight="509.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="sample.ViewAllCarsManufacturer">
+<AnchorPane fx:id="mainAnchorPane" prefHeight="509.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ViewAllCarsManufacturer">
     <children>
         <TableView fx:id="carDataTable" layoutX="34.0" layoutY="54.0" prefHeight="400.0" prefWidth="675.0">
             <columns>
@@ -26,7 +25,7 @@
          <contextMenu>
             <ContextMenu>
               <items>
-                    <MenuItem mnemonicParsing="false" onAction="#onEditContextMenu" text="Edit"/>
+                    <MenuItem mnemonicParsing="false" onAction="#onEditContextMenu" text="Edit" />
                     <MenuItem mnemonicParsing="false" onAction="#onDeleteContextMenu" text="Delete" />
               </items>
             </ContextMenu>
@@ -35,11 +34,6 @@
 <!--      <Button layoutX="577.0" layoutY="465.0" mnemonicParsing="false" onAction="#onReturnToHomeManufPressed" text="Return to Home Page" />-->
       <Button layoutX="33.0" layoutY="465.0" mnemonicParsing="false" onAction="#onLogoutManufPressed" text="Logout" />
       <Button layoutX="33.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddNewCarButtonPressed" prefHeight="25.0" prefWidth="109.0" text="Add New Car">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
-      <Button fx:id="editACarButton" layoutX="161.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Edit A Car">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

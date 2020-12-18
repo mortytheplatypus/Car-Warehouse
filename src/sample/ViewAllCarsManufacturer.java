@@ -77,7 +77,7 @@ public class ViewAllCarsManufacturer {
     }
 
     @FXML
-    public void onAddNewCarButtonPressed(ActionEvent event) throws IOException {
+    public void onAddNewCarButtonPressed(ActionEvent event) {
         new LoadFXMLPage("AddNewCar.fxml", event);
     }
 
@@ -104,36 +104,26 @@ public class ViewAllCarsManufacturer {
         }
     }
 
-    public void onEditContextMenu() throws IOException {
+    public void onEditContextMenu(ActionEvent event) throws IOException {
         Car car = carDataTable.getSelectionModel().getSelectedItem();
 
         NetworkUtil.getInstance().send("EDITREQUEST\t" + car.getRegistrationNumber());
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("EditCar.fxml"));
+        Parent parent = null;
         try {
-            fxmlLoader.load();
+            parent = fxmlLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        new Thread(()-> {
-//            String receivedData = NetworkUtil.getInstance().receive();
-//            System.out.println(receivedData);
-//            if (receivedData.equals("CARINSTANTIATED")) {
-////                new LoadFXMLPage("EditCar.fxml", event);
-//                FXMLLoader fxmlLoader = new FXMLLoader();
-//                fxmlLoader.setLocation(getClass().getResource("EditCar.fxml"));
-//                try {
-//                    fxmlLoader.load();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }).start();
+        Stage edit = new Stage();
+        edit.setScene(new Scene(parent));
+        edit.showAndWait();
     }
 
     @FXML
-    private void refreshThisPage(ActionEvent event) throws IOException {
+    private void refreshThisPage(ActionEvent event) {
         new LoadFXMLPage("ViewAllCarsManufacturer.fxml", event);
     }
 }

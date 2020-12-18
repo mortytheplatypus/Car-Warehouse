@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class EditCar {
 
@@ -72,7 +73,8 @@ public class EditCar {
 
     @FXML
     void OnReturnToHomePressed(ActionEvent event) {
-        new LoadFXMLPage("ViewAllCarsManufacturer.fxml", event);
+//        new LoadFXMLPage("ViewAllCarsManufacturer.fxml", event);
+        ((Stage)newQuantity.getScene().getWindow()).close();
     }
 
     @FXML
