@@ -77,4 +77,34 @@ public class Car {
     public void reduceQuantity() {
         this.quantity--;
     }
+
+    public void setRegistrationNumber(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
+    }
+
+    public void setYearMade(int yearMade) {
+        this.yearMade = yearMade;
+    }
+
+    public void setMaker(String maker) {
+        this.maker = maker;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setColor(String color1, String color2, String color3) {
+        this.color[0] = color1;
+        this.color[1] = color2;
+        this.color[2] = color3;
+    }
 }

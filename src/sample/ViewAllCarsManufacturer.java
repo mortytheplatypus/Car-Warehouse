@@ -104,6 +104,34 @@ public class ViewAllCarsManufacturer {
         }
     }
 
+    public void onEditContextMenu() throws IOException {
+        Car car = carDataTable.getSelectionModel().getSelectedItem();
+
+        NetworkUtil.getInstance().send("EDITREQUEST\t" + car.getRegistrationNumber());
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("EditCar.fxml"));
+        try {
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        new Thread(()-> {
+//            String receivedData = NetworkUtil.getInstance().receive();
+//            System.out.println(receivedData);
+//            if (receivedData.equals("CARINSTANTIATED")) {
+////                new LoadFXMLPage("EditCar.fxml", event);
+//                FXMLLoader fxmlLoader = new FXMLLoader();
+//                fxmlLoader.setLocation(getClass().getResource("EditCar.fxml"));
+//                try {
+//                    fxmlLoader.load();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
+    }
+
     @FXML
     private void refreshThisPage(ActionEvent event) throws IOException {
         new LoadFXMLPage("ViewAllCarsManufacturer.fxml", event);

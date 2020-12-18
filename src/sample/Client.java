@@ -8,6 +8,8 @@ public class Client implements Runnable {
     private static final String FILE_NAME = "D:\\BUET\\Academic\\1-2\\CSE 108\\Car Warehouse\\src\\sample\\car.txt";
     private static ArrayList<Car> carArrayList = new ArrayList<>();
     private Socket socket;
+    private Car carToBeEdited = null;
+    private String carToBeEditedString;
 
     public Client(Socket socket) {
         this.socket = socket;
@@ -55,9 +57,38 @@ public class Client implements Runnable {
                             break;
                         }
                     }
-                } else if (temp[0].equals("EDIT")) {
-                    //Work to be done
+                } else if (temp[0].equals("EDITREQUEST")) {
+                    carToBeEdited = null;
+                    for (Car car : carArrayList) {
+                        if (car.getRegistrationNumber().equals(temp[1])) {
+                            carToBeEdited = car;
+                            carToBeEditedString = car.getRegistrationNumber() + "\t" + car.getYearMade() + "\t" + car.getColor1() + "\t";
+                            carToBeEditedString += car.getColor2() + "\t" + car.getColor3() + "\t" + car.getMaker() + "\t" + car.getModel() + "\t";
+                            carToBeEditedString += car.getPrice() + "\t" + car.getQuantity();
+                            break;
+                        }
+                    }
+//                    dos.writeUTF("CARINSTANTIATED");
 
+                } else if (temp[0].equals("EDIT")) {
+                    dos.writeUTF(carToBeEditedString);
+                } else if (temp[0].equals("EDITCAR")) {
+                    for (Car car : carArrayList) {
+                        if (car.getRegistrationNumber().equals(temp[1])) {
+
+                            car.setRegistrationNumber(temp[1]);
+                            car.setYearMade(Integer.parseInt(temp[2]));
+                            car.setColor(temp[3], temp[4], temp[5]);
+                            car.setMaker(temp[6]);
+                            car.setModel(temp[7]);
+                            car.setPrice(Integer.parseInt(temp[8]));
+                            car.setQuantity(Integer.parseInt(temp[9]));
+
+                            saveCarArrayList(carArrayList);
+                            break;
+                        }
+                    }
+                    dos.writeUTF("EDITED");
                 } else if (temp[0].equals("BUY")) {
                     String buyMessage = "NOTBOUGHT";
                     for (Car car : carArrayList) {
