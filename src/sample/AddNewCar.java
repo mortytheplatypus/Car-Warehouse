@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,36 +41,18 @@ public class AddNewCar {
     private TextField newPrice;
 
     @FXML
-    public void OnClearPressed(ActionEvent event) {
-        newRegNo.clear();
-        newYearOfManufacture.clear();
-        newColor1.setValue(Color.WHITE);
-        newColor2.setValue(Color.WHITE);
-        newColor3.setValue(Color.WHITE);
-        newManufacturer.clear();
-        newModel.clear();
-        newPrice.clear();
+    private TextField newQuantity;
+
+    @FXML
+    private Label cautionLabel;
+
+    @FXML
+    public void initialize() {
+        cautionLabel.setDisable(true);
     }
 
     @FXML
-    public void onConfirmPressed(ActionEvent event) throws IOException {
-        String str = "NEWCAR" + "\t" + newRegNo.getText() + "\t" + newYearOfManufacture.getText() + "\t";
-        str += newColor1.getValue() + "\t" + newColor2.getValue() + "\t" + newColor3.getValue() + "\t";
-        str += newManufacturer.getText() + "\t" + newModel.getText() + "\t" + newPrice.getText();
-
-        NetworkUtil.getInstance().send(str);
-
-        String finalStr = str;
-        new Thread(()-> {
-            String receivedData = NetworkUtil.getInstance().receive();
-            Platform.runLater(()-> {
-                if (receivedData.equals("ADDED")) {
-//                    System.out.println(finalStr);
-                    new Alert(Alert.AlertType.CONFIRMATION).show();
-                }
-            });
-        }).start();
-
+    public void OnClearPressed() {
         newRegNo.clear();
         newYearOfManufacture.clear();
         newColor1.setValue(Color.WHITE);
@@ -77,8 +61,65 @@ public class AddNewCar {
         newManufacturer.clear();
         newModel.clear();
         newPrice.clear();
+        newQuantity.clear();
     }
 
+    @FXML
+    public void onConfirmPressed() {
+        try {
+            Integer.parseInt(newPrice.getText());
+            cautionLabel.setDisable(true);
+        } catch (NumberFormatException e) {
+            cautionLabel.setDisable(false);
+            newPrice.clear();
+        }
+
+        try {
+            Integer.parseInt(newYearOfManufacture.getText());
+            cautionLabel.setDisable(true);
+        } catch (NumberFormatException e) {
+            cautionLabel.setDisable(false);
+            newYearOfManufacture.clear();
+        }
+
+        try {
+            Integer.parseInt(newQuantity.getText());
+            cautionLabel.setDisable(true);
+        } catch (NumberFormatException e) {
+            cautionLabel.setDisable(false);
+            newQuantity.clear();
+        }
+
+        if (cautionLabel.isDisabled()) {
+            String str = "NEWCAR" + "\t" + newRegNo.getText() + "\t" + newYearOfManufacture.getText() + "\t";
+            str += newColor1.getValue() + "\t" + newColor2.getValue() + "\t" + newColor3.getValue() + "\t";
+            str += newManufacturer.getText() + "\t" + newModel.getText() + "\t" + newPrice.getText() + "\t" + newQuantity.getText();
+
+            NetworkUtil.getInstance().send(str);
+
+            new Thread(() -> {
+                String receivedData = NetworkUtil.getInstance().receive();
+                Platform.runLater(() -> {
+                    if (receivedData.equals("ADDED")) {
+                        new Alert(Alert.AlertType.CONFIRMATION).show();
+                    }
+                });
+            }).start();
+
+            newRegNo.clear();
+            newYearOfManufacture.clear();
+            newColor1.setValue(Color.WHITE);
+            newColor2.setValue(Color.WHITE);
+            newColor3.setValue(Color.WHITE);
+            newManufacturer.clear();
+            newModel.clear();
+            newPrice.clear();
+            newQuantity.clear();
+            cautionLabel.setDisable(true);
+        }
+    }
+
+    @FXML
     public void OnReturnToHomePressed(ActionEvent event) {
         Parent loginPageParent = null;
         try {
@@ -91,4 +132,6 @@ public class AddNewCar {
         stage.setScene(loginPageScene);
         stage.show();
     }
+
+
 }

@@ -31,7 +31,7 @@ public class Client implements Runnable {
                     String loginSuccessful = check(clientMessage);
                     dos.writeUTF(loginSuccessful);
                 } else if (temp[0].equals("NEWCAR")) {
-                    Car car = new Car(temp[1], Integer.parseInt(temp[2]), temp[3], temp[4], temp[5], temp[6], temp[7], Integer.parseInt(temp[8]), 1);
+                    Car car = new Car(temp[1], Integer.parseInt(temp[2]), temp[3], temp[4], temp[5], temp[6], temp[7], Integer.parseInt(temp[8]), Integer.parseInt(temp[9]));
                     carArrayList.add(car);
                     saveCarArrayList(carArrayList);
                     dos.writeUTF("ADDED");

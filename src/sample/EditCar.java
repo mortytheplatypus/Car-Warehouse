@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -38,7 +39,12 @@ public class EditCar {
     @FXML
     private TextField newQuantity;
 
+    @FXML
+    private Label cautionLabelEdit;
+
     public void initialize() {
+        cautionLabelEdit.setDisable(true);
+
         NetworkUtil.getInstance().send("EDIT\t");
         new Thread(()-> {
             String receivedData = NetworkUtil.getInstance().receive();
@@ -79,22 +85,46 @@ public class EditCar {
 
     @FXML
     void onConfirmPressed(ActionEvent event) {
-        String str = "EDITCAR" + "\t" + newRegNo.getText() + "\t" + newYearOfManufacture.getText() + "\t";
-        str += newColor1.getValue() + "\t" + newColor2.getValue() + "\t" + newColor3.getValue() + "\t";
-        str += newManufacturer.getText() + "\t" + newModel.getText() + "\t" + newPrice.getText() + "\t" + newQuantity.getText();
+        try {
+            Integer.parseInt(newPrice.getText());
+            cautionLabelEdit.setDisable(true);
+        } catch (NumberFormatException e) {
+            cautionLabelEdit.setDisable(false);
+            newPrice.clear();
+        }
 
-        NetworkUtil.getInstance().send(str);
+        try {
+            Integer.parseInt(newYearOfManufacture.getText());
+            cautionLabelEdit.setDisable(true);
+        } catch (NumberFormatException e) {
+            cautionLabelEdit.setDisable(false);
+            newYearOfManufacture.clear();
+        }
 
-        String finalStr = str;
-        new Thread(()-> {
-            String receivedData = NetworkUtil.getInstance().receive();
-            Platform.runLater(()-> {
-                if (receivedData.equals("EDITED")) {
-//                    System.out.println(finalStr);
-                    new Alert(Alert.AlertType.CONFIRMATION).show();
-                }
-            });
-        }).start();
+        try {
+            Integer.parseInt(newQuantity.getText());
+            cautionLabelEdit.setDisable(true);
+        } catch (NumberFormatException e) {
+            cautionLabelEdit.setDisable(false);
+            newQuantity.clear();
+        }
+
+        if (cautionLabelEdit.isDisabled()) {
+            String str = "EDITCAR" + "\t" + newRegNo.getText() + "\t" + newYearOfManufacture.getText() + "\t";
+            str += newColor1.getValue() + "\t" + newColor2.getValue() + "\t" + newColor3.getValue() + "\t";
+            str += newManufacturer.getText() + "\t" + newModel.getText() + "\t" + newPrice.getText() + "\t" + newQuantity.getText();
+
+            NetworkUtil.getInstance().send(str);
+
+            new Thread(() -> {
+                String receivedData = NetworkUtil.getInstance().receive();
+                Platform.runLater(() -> {
+                    if (receivedData.equals("EDITED")) {
+                        new Alert(Alert.AlertType.CONFIRMATION).show();
+                    }
+                });
+            }).start();
+        }
     }
 
 }
