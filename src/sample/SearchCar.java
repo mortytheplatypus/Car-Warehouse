@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -61,21 +60,6 @@ public class SearchCar {
         model.setCellValueFactory(new PropertyValueFactory<>("model"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
         quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-
-//        NetworkUtil.getInstance().send("VIEWALL\t");
-//
-//        new Thread(()-> {
-//            String str = NetworkUtil.getInstance().receive();
-//            String[] splited = str.split("\t");
-//            int n = Integer.parseInt(splited[1]);
-//            for (int i=0; i<n; i++) {
-//                String carInfo = NetworkUtil.getInstance().receive();
-//                String[] s = carInfo.split("\t");
-//                Car car = new Car(s[0], Integer.parseInt(s[1]), s[2], s[3], s[4], s[5], s[6], Integer.parseInt(s[7]), Integer.parseInt(s[8]));
-//                carDataTable.getItems().add(car);
-//            }
-//        }).start();
-
     }
 
     @FXML
@@ -84,7 +68,7 @@ public class SearchCar {
     }
 
     @FXML
-    public void onSearchClicked(ActionEvent event) {
+    public void onSearchClicked() {
 
         String searchCar = searchArea.getText();
         String sendStr = "SEARCH\t";

@@ -24,6 +24,7 @@
          <contextMenu>
             <ContextMenu>
                <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onViewInfoViewer" text="View Info" />
                   <MenuItem fx:id="buyMenuItem" mnemonicParsing="false" onAction="#onBuyContextMenu" text="Buy" />
                </items>
             </ContextMenu>

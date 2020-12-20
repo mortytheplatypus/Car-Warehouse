@@ -3,7 +3,6 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -104,7 +103,8 @@ public class ViewAllCarsManufacturer {
         }
     }
 
-    public void onEditContextMenu(ActionEvent event) throws IOException {
+    @FXML
+    public void onEditContextMenu() {
         Car car = carDataTable.getSelectionModel().getSelectedItem();
 
         NetworkUtil.getInstance().send("EDITREQUEST\t" + car.getRegistrationNumber());
@@ -125,5 +125,24 @@ public class ViewAllCarsManufacturer {
     @FXML
     private void refreshThisPage(ActionEvent event) {
         new LoadFXMLPage("ViewAllCarsManufacturer.fxml", event);
+    }
+
+    @FXML
+    public void onViewInfoManufacturer() {
+        Car car = carDataTable.getSelectionModel().getSelectedItem();
+
+        NetworkUtil.getInstance().send("VIEWINFOREQUEST\t" + car.getRegistrationNumber());
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("ViewInfo.fxml"));
+        Parent parent = null;
+        try {
+            parent = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage info = new Stage();
+        info.setScene(new Scene(parent));
+        info.showAndWait();
     }
 }

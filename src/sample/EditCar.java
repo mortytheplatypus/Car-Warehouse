@@ -78,7 +78,6 @@ public class EditCar {
 
     @FXML
     void OnReturnToHomePressed() {
-//        new LoadFXMLPage("ViewAllCarsManufacturer.fxml", event);
         ((Stage)newQuantity.getScene().getWindow()).close();
     }
 

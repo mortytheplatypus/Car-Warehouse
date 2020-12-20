@@ -4,24 +4,15 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class ViewAllCarsViewer {
-
-    @FXML
-    private AnchorPane mainAnchorPane;
-
-    @FXML
-    private MenuItem buyMenuItem;
-
     @FXML
     private TableView<Car> carDataTable;
 
@@ -80,16 +71,17 @@ public class ViewAllCarsViewer {
     }
 
     @FXML
-    void refreshThisPage(ActionEvent event) throws IOException {
+    void refreshThisPage(ActionEvent event)  {
         new LoadFXMLPage("ViewAllCarsViewer.fxml", event);
     }
 
     @FXML
-    public void returnToMainPage(ActionEvent event) throws IOException {
+    public void returnToMainPage(ActionEvent event) {
         new LoadFXMLPage("Start.fxml", event);
     }
 
-    public void onBuyContextMenu(ActionEvent event) {
+    @FXML
+    public void onBuyContextMenu() {
         Car car = carDataTable.getSelectionModel().getSelectedItem();
 
         NetworkUtil.getInstance().send("BUY\t" + car.getRegistrationNumber());
@@ -106,7 +98,27 @@ public class ViewAllCarsViewer {
         }).start();
     }
 
+    @FXML
     public void onSearchCarClicked(ActionEvent event) {
         new LoadFXMLPage("SearchCar.fxml", event);
+    }
+
+    @FXML
+    public void onViewInfoViewer() {
+        Car car = carDataTable.getSelectionModel().getSelectedItem();
+
+        NetworkUtil.getInstance().send("VIEWINFOREQUEST\t" + car.getRegistrationNumber());
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("ViewInfo.fxml"));
+        Parent parent = null;
+        try {
+            parent = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage info = new Stage();
+        info.setScene(new Scene(parent));
+        info.showAndWait();
     }
 }

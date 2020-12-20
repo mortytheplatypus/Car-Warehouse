@@ -56,7 +56,7 @@ public class Client implements Runnable {
                             break;
                         }
                     }
-                } else if (temp[0].equals("EDITREQUEST")) {
+                } else if (temp[0].equals("EDITREQUEST") || temp[0].equals("VIEWINFOREQUEST")) {
                     carToBeEdited = null;
                     for (Car car : carArrayList) {
                         if (car.getRegistrationNumber().equals(temp[1])) {
@@ -67,7 +67,7 @@ public class Client implements Runnable {
                             break;
                         }
                     }
-                } else if (temp[0].equals("EDIT")) {
+                } else if (temp[0].equals("EDIT") || temp[0].equals("VIEWINFO")) {
                     dos.writeUTF(carToBeEditedString);
                 } else if (temp[0].equals("EDITCAR")) {
                     for (Car car : carArrayList) {
@@ -136,12 +136,6 @@ public class Client implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private void editCarMethod(DataInputStream dis, DataOutputStream dos, String[] temp) {
-        Car car = new Car(temp[1], Integer.parseInt(temp[2]), temp[3], temp[4], temp[5], temp[6], temp[7], Integer.parseInt(temp[8]), Integer.parseInt(temp[9]));
-
-
     }
 
     private void saveCarArrayList(ArrayList<Car> carArrayList) {
