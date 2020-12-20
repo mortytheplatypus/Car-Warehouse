@@ -1,19 +1,10 @@
 package sample;
 
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class AddNewCar {
     @FXML
@@ -133,17 +124,6 @@ public class AddNewCar {
 
     @FXML
     public void OnReturnToHomePressed(ActionEvent event) {
-        Parent loginPageParent = null;
-        try {
-            loginPageParent = FXMLLoader.load(getClass().getResource("ViewAllCarsManufacturer.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Scene loginPageScene = new Scene(loginPageParent);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(loginPageScene);
-        stage.show();
+        new LoadFXMLPage("ViewAllCarsManufacturer.fxml", event);
     }
-
-
 }

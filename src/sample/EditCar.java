@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ColorPicker;
@@ -65,7 +64,7 @@ public class EditCar {
     }
 
     @FXML
-    void OnClearPressed(ActionEvent event) {
+    void OnClearPressed() {
         newRegNo.clear();
         newYearOfManufacture.clear();
         newColor1.setValue(Color.WHITE);
@@ -78,13 +77,13 @@ public class EditCar {
     }
 
     @FXML
-    void OnReturnToHomePressed(ActionEvent event) {
+    void OnReturnToHomePressed() {
 //        new LoadFXMLPage("ViewAllCarsManufacturer.fxml", event);
         ((Stage)newQuantity.getScene().getWindow()).close();
     }
 
     @FXML
-    void onConfirmPressed(ActionEvent event) {
+    void onConfirmPressed() {
         try {
             int n = Integer.parseInt(newPrice.getText());
             cautionLabelEdit.setDisable(true);

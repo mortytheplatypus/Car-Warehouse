@@ -25,7 +25,6 @@ public class Client implements Runnable {
             while (true) {
                 String clientMessage = dis.readUTF();
                 String[] temp = clientMessage.split("\t");
-//                System.out.println("\t\t\t\t\t\t" + clientMessage);
 
                 if (temp[0].equals("LOGIN")) {
                     String loginSuccessful = check(clientMessage);
@@ -155,9 +154,9 @@ public class Client implements Runnable {
         }
 
         for (Car car : carArrayList) {
-            String s = car.getRegistrationNumber() + "\t" + Integer.toString(car.getYearMade()) + "\t";
+            String s = car.getRegistrationNumber() + "\t" + car.getYearMade() + "\t";
             s += car.getColor1() + "\t" + car.getColor2() + "\t" +car.getColor3() + "\t";
-            s += car.getMaker() + "\t" + car.getModel() + "\t" + Integer.toString(car.getPrice()) + "\t" + Integer.toString(car.getQuantity());
+            s += car.getMaker() + "\t" + car.getModel() + "\t" + car.getPrice() + "\t" + car.getQuantity();
             try {
                 BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME, true));
                 bw.write(s);
@@ -175,15 +174,11 @@ public class Client implements Runnable {
             String carInfoRaw;
             while (true) {
                 carInfoRaw = br.readLine();
-//                System.out.println(carInfoRaw);
                 if (carInfoRaw == null) break;
                 String[] cars = carInfoRaw.split("\t");
-//                System.out.println("\u001B[36m" + "carInfoRaw:\t\t\t" + "\u001B[0m" + carInfoRaw);
-//                System.out.println("\u001B[34m" + "carsLength:\t\t\t" + "\u001B[0m" + cars.length);
+                if (Integer.parseInt(cars[8])<=0) continue;
                 Car newCar = new Car(cars[0], Integer.parseInt(cars[1]), cars[2], cars[3], cars[4], cars[5], cars[6], Integer.parseInt(cars[7]), Integer.parseInt(cars[8]));
-//                System.out.println(newCar);
                 carArrayList.add(newCar);
-//                System.out.println("\t\t" + newCar.getRegistrationNumber());
             }
 
         } catch (IOException e) {
