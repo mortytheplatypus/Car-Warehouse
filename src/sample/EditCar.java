@@ -85,7 +85,6 @@ public class EditCar {
     void onConfirmPressed() {
         try {
             int n = Integer.parseInt(newPrice.getText());
-            cautionLabelEdit.setDisable(true);
             if (n<=0) {
                 cautionLabelEdit.setDisable(false);
                 newPrice.clear();
@@ -97,7 +96,6 @@ public class EditCar {
 
         try {
             int n = Integer.parseInt(newYearOfManufacture.getText());
-            cautionLabelEdit.setDisable(true);
             if (n<=0) {
                 cautionLabelEdit.setDisable(false);
                 newYearOfManufacture.clear();
@@ -109,7 +107,6 @@ public class EditCar {
 
         try {
             int n = Integer.parseInt(newQuantity.getText());
-            cautionLabelEdit.setDisable(true);
             if (n<=0) {
                 cautionLabelEdit.setDisable(false);
                 newQuantity.clear();
@@ -135,6 +132,8 @@ public class EditCar {
                 });
             }).start();
         }
+
+        cautionLabelEdit.setDisable(true);
     }
 
 }

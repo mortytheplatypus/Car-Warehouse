@@ -39,7 +39,6 @@ public class ViewInfo {
         NetworkUtil.getInstance().send("VIEWINFO\t");
         new Thread(()-> {
             String receivedData = NetworkUtil.getInstance().receive();
-            System.out.println("\n\t\t\t" + receivedData + "\n");
             String[] splited = receivedData.split("\t");
 
             regNo.setText(splited[0]);

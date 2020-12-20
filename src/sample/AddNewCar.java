@@ -59,10 +59,9 @@ public class AddNewCar {
     public void onConfirmPressed() {
         try {
             int n = Integer.parseInt(newPrice.getText());
-            cautionLabel.setDisable(true);
             if (n<=0) {
                 cautionLabel.setDisable(false);
-                newQuantity.clear();
+                newPrice.clear();
             }
         } catch (NumberFormatException e) {
             cautionLabel.setDisable(false);
@@ -71,10 +70,9 @@ public class AddNewCar {
 
         try {
             int n = Integer.parseInt(newYearOfManufacture.getText());
-            cautionLabel.setDisable(true);
             if (n<=0) {
                 cautionLabel.setDisable(false);
-                newQuantity.clear();
+                newYearOfManufacture.clear();
             }
         } catch (NumberFormatException e) {
             cautionLabel.setDisable(false);
@@ -83,7 +81,6 @@ public class AddNewCar {
 
         try {
             int n = Integer.parseInt(newQuantity.getText());
-            cautionLabel.setDisable(true);
             if (n<=0) {
                 cautionLabel.setDisable(false);
                 newQuantity.clear();
@@ -118,8 +115,9 @@ public class AddNewCar {
             newModel.clear();
             newPrice.clear();
             newQuantity.clear();
-            cautionLabel.setDisable(true);
         }
+
+        cautionLabel.setDisable(true);
     }
 
     @FXML
