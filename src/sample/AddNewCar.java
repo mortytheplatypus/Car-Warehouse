@@ -67,24 +67,36 @@ public class AddNewCar {
     @FXML
     public void onConfirmPressed() {
         try {
-            Integer.parseInt(newPrice.getText());
+            int n = Integer.parseInt(newPrice.getText());
             cautionLabel.setDisable(true);
+            if (n<=0) {
+                cautionLabel.setDisable(false);
+                newQuantity.clear();
+            }
         } catch (NumberFormatException e) {
             cautionLabel.setDisable(false);
             newPrice.clear();
         }
 
         try {
-            Integer.parseInt(newYearOfManufacture.getText());
+            int n = Integer.parseInt(newYearOfManufacture.getText());
             cautionLabel.setDisable(true);
+            if (n<=0) {
+                cautionLabel.setDisable(false);
+                newQuantity.clear();
+            }
         } catch (NumberFormatException e) {
             cautionLabel.setDisable(false);
             newYearOfManufacture.clear();
         }
 
         try {
-            Integer.parseInt(newQuantity.getText());
+            int n = Integer.parseInt(newQuantity.getText());
             cautionLabel.setDisable(true);
+            if (n<=0) {
+                cautionLabel.setDisable(false);
+                newQuantity.clear();
+            }
         } catch (NumberFormatException e) {
             cautionLabel.setDisable(false);
             newQuantity.clear();

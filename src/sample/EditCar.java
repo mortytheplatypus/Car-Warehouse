@@ -86,24 +86,36 @@ public class EditCar {
     @FXML
     void onConfirmPressed(ActionEvent event) {
         try {
-            Integer.parseInt(newPrice.getText());
+            int n = Integer.parseInt(newPrice.getText());
             cautionLabelEdit.setDisable(true);
+            if (n<=0) {
+                cautionLabelEdit.setDisable(false);
+                newPrice.clear();
+            }
         } catch (NumberFormatException e) {
             cautionLabelEdit.setDisable(false);
             newPrice.clear();
         }
 
         try {
-            Integer.parseInt(newYearOfManufacture.getText());
+            int n = Integer.parseInt(newYearOfManufacture.getText());
             cautionLabelEdit.setDisable(true);
+            if (n<=0) {
+                cautionLabelEdit.setDisable(false);
+                newYearOfManufacture.clear();
+            }
         } catch (NumberFormatException e) {
             cautionLabelEdit.setDisable(false);
             newYearOfManufacture.clear();
         }
 
         try {
-            Integer.parseInt(newQuantity.getText());
+            int n = Integer.parseInt(newQuantity.getText());
             cautionLabelEdit.setDisable(true);
+            if (n<=0) {
+                cautionLabelEdit.setDisable(false);
+                newQuantity.clear();
+            }
         } catch (NumberFormatException e) {
             cautionLabelEdit.setDisable(false);
             newQuantity.clear();
