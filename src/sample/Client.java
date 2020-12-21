@@ -31,9 +31,20 @@ public class Client implements Runnable {
                     dos.writeUTF(loginSuccessful);
                 } else if (temp[0].equals("NEWCAR")) {
                     Car car = new Car(temp[1], Integer.parseInt(temp[2]), temp[3], temp[4], temp[5], temp[6], temp[7], Integer.parseInt(temp[8]), Integer.parseInt(temp[9]));
-                    carArrayList.add(car);
-                    saveCarArrayList(carArrayList);
-                    dos.writeUTF("ADDED");
+
+                    String isAdded = "ADDED";
+
+                    for (Car c : carArrayList) {
+                        if (c.getRegistrationNumber().toLowerCase().equals(temp[1].toLowerCase())) {
+                            isAdded = "NOTADDED";
+                            break;
+                        }
+                    }
+                    if (isAdded.equals("ADDED")) {
+                        carArrayList.add(car);
+                        saveCarArrayList(carArrayList);
+                    }
+                    dos.writeUTF(isAdded);
                 } else if (temp[0].equals("VIEWALL")) {
                     carArrayList.clear();
                     loadCarArrayList(carArrayList);
@@ -71,7 +82,7 @@ public class Client implements Runnable {
                     dos.writeUTF(carToBeEditedString);
                 } else if (temp[0].equals("EDITCAR")) {
                     for (Car car : carArrayList) {
-                        if (car.getRegistrationNumber().equals(temp[1])) {
+                        if (car.getRegistrationNumber().toLowerCase().equals(temp[1].toLowerCase())) {
 
                             car.setRegistrationNumber(temp[1]);
                             car.setYearMade(Integer.parseInt(temp[2]));
@@ -108,13 +119,13 @@ public class Client implements Runnable {
 
                     if (temp[1].equals("REG")) {
                         for (Car car : carArrayList) {
-                            if (car.getRegistrationNumber().equals(temp[2])) {
+                            if (car.getRegistrationNumber().toLowerCase().equals(temp[2].toLowerCase())) {
                                 indexes[len++] = carArrayList.indexOf(car);
                             }
                         }
                     } else if (temp[1].equals("MnM")) {
                         for (Car car : carArrayList) {
-                            if (car.getMaker().equals(temp[2]) || car.getModel().equals(temp[2])) {
+                            if (car.getMaker().toLowerCase().equals(temp[2].toLowerCase()) || car.getModel().toLowerCase().equals(temp[2].toLowerCase())) {
                                 indexes[len++] = carArrayList.indexOf(car);
                             }
                         }

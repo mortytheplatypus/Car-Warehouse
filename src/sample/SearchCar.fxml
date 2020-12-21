@@ -10,50 +10,63 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="509.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SearchCar">
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
+<AnchorPane prefHeight="510.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SearchCar">
 
     <fx:define>
         <ToggleGroup fx:id="searchCriteria" />
     </fx:define>
-    <RadioButton fx:id="byRegistration" layoutX="116.0" layoutY="29.0" toggleGroup="$searchCriteria" selected="true"/>
-    <RadioButton fx:id="byMakerAndModel" layoutX="275.0" layoutY="29.0" toggleGroup="$searchCriteria" />
+    <RadioButton fx:id="byRegistration" layoutX="160.0" layoutY="29.0" selected="true">
+      <toggleGroup>
+         <ToggleGroup fx:id="searchCriteria" />
+      </toggleGroup></RadioButton>
+    <RadioButton fx:id="byMakerAndModel" layoutX="327.0" layoutY="29.0" toggleGroup="$searchCriteria" />
 
    <Label layoutX="33.0" layoutY="25.0" text="Search by">
       <font>
          <Font size="16.0" />
       </font>
    </Label>
-   <Label layoutX="144.0" layoutY="25.0" text="Registration No.">
+   <Label layoutX="184.0" layoutY="25.0" text="Registration No.">
       <font>
          <Font size="16.0" />
       </font>
    </Label>
-   <Label layoutX="300.0" layoutY="25.0" text="Maker and Model">
+   <Label layoutX="352.0" layoutY="25.0" text="Maker or Model">
       <font>
          <Font size="16.0" />
       </font>
    </Label>
-   <TextField fx:id="searchArea" layoutX="33.0" layoutY="68.0" prefHeight="25.0" prefWidth="323.0" />
-   <Button fx:id="searchButton" layoutX="374.0" layoutY="68.0" mnemonicParsing="false" onAction="#onSearchClicked" text="Search" />
-   <Button alignment="CENTER" layoutX="33.0" layoutY="441.0" mnemonicParsing="false" onAction="#onViewAll" prefHeight="44.0" prefWidth="166.0" text="View All Cars" wrapText="true">
+   <TextField fx:id="searchArea" layoutX="33.0" layoutY="68.0" prefHeight="25.0" prefWidth="357.0" />
+   <Button fx:id="searchButton" layoutX="414.0" layoutY="68.0" mnemonicParsing="false" onAction="#onSearchClicked" text="Search" />
+   <Button alignment="CENTER" layoutX="541.0" layoutY="445.0" mnemonicParsing="false" onAction="#onViewAll" prefHeight="44.0" prefWidth="166.0" text="View All Cars" wrapText="true">
       <font>
          <Font name="System Bold" size="20.0" />
       </font>
    </Button>
    <TableView fx:id="carDataTable" layoutX="32.0" layoutY="125.0" prefHeight="308.0" prefWidth="675.0">
        <columns>
-           <TableColumn fx:id="regNo" prefWidth="75.0" text="Reg. No." />
-           <TableColumn fx:id="yearMade" prefWidth="75.0" text="Year Made" />
-           <TableColumn fx:id="color1" prefWidth="75.0" text="Color1" />
-           <TableColumn fx:id="color2" prefWidth="75.0" text="Color2" />
-           <TableColumn fx:id="color3" prefWidth="75.0" text="Color3" />
-           <TableColumn fx:id="maker" prefWidth="75.0" text="Maker" />
-           <TableColumn fx:id="model" prefWidth="75.0" text="Model" />
-           <TableColumn fx:id="price" prefWidth="75.0" text="Price" />
-           <TableColumn fx:id="quantity" prefWidth="75.0" text="Quantity" />
+           <TableColumn fx:id="regNo" prefWidth="110.0" text="Reg. No." />
+           <TableColumn fx:id="yearMade" prefWidth="70.0" text="Year Made" />
+           <TableColumn fx:id="color1" prefWidth="70.0" text="Color1" />
+           <TableColumn fx:id="color2" prefWidth="70.0" text="Color2" />
+           <TableColumn fx:id="color3" prefWidth="70.0" text="Color3" />
+           <TableColumn fx:id="maker" text="Maker" />
+           <TableColumn fx:id="model" text="Model" />
+           <TableColumn fx:id="price" prefWidth="65.0" text="Price" />
+           <TableColumn fx:id="quantity" prefWidth="60.0" text="Quantity" />
        </columns>
+       <contextMenu>
+           <ContextMenu>
+               <items>
+                   <MenuItem mnemonicParsing="false" onAction="#onViewInfoSearch" text="View Info" />
+                   <MenuItem fx:id="buyMenuItem" mnemonicParsing="false" onAction="#onBuyContextMenuSearch" text="Buy" />
+               </items>
+           </ContextMenu>
+       </contextMenu>
    </TableView>
-   <Button layoutX="528.0" layoutY="28.0" mnemonicParsing="false" onAction="#refreshThisPage" prefHeight="65.0" prefWidth="166.0" text="Refresh">
+   <Button layoutX="541.0" layoutY="29.0" mnemonicParsing="false" onAction="#refreshThisPage" prefHeight="65.0" prefWidth="166.0" text="Refresh">
       <font>
          <Font name="System Bold" size="30.0" />
       </font>

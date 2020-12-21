@@ -1,9 +1,16 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class SearchCar {
 
@@ -70,7 +77,7 @@ public class SearchCar {
     @FXML
     public void onSearchClicked() {
 
-        String searchCar = searchArea.getText();
+        String searchCar = searchArea.getText().toLowerCase();
         String sendStr = "SEARCH\t";
         if (byRegistration.isSelected()) {
             sendStr += "REG\t";
@@ -99,5 +106,42 @@ public class SearchCar {
     public void refreshThisPage(ActionEvent event) {
         new LoadFXMLPage("SearchCar.fxml", event);
 
+    }
+
+    @FXML
+    public void onViewInfoSearch() {
+        Car car = carDataTable.getSelectionModel().getSelectedItem();
+
+        NetworkUtil.getInstance().send("VIEWINFOREQUEST\t" + car.getRegistrationNumber());
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("ViewInfo.fxml"));
+        Parent parent = null;
+        try {
+            parent = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage info = new Stage();
+        info.setScene(new Scene(parent));
+        info.showAndWait();
+    }
+
+    @FXML
+    public void onBuyContextMenuSearch() {
+        Car car = carDataTable.getSelectionModel().getSelectedItem();
+
+        NetworkUtil.getInstance().send("BUY\t" + car.getRegistrationNumber());
+
+        new Thread(()-> {
+            String buyingMessage = NetworkUtil.getInstance().receive();
+            Platform.runLater(()-> {
+                if (buyingMessage.equals("BOUGHT")) {
+                    new Alert(Alert.AlertType.CONFIRMATION).show();
+                } else {
+                    new Alert((Alert.AlertType.ERROR)).show();
+                }
+            });
+        }).start();
     }
 }

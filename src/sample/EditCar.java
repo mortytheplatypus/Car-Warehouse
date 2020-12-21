@@ -12,36 +12,41 @@ import javafx.stage.Stage;
 public class EditCar {
 
     @FXML
-    private TextField newRegNo;
+    private TextField editRegNo;
 
     @FXML
-    private TextField newManufacturer;
+    private TextField editMaker;
 
     @FXML
-    private TextField newModel;
+    private TextField editModel;
 
     @FXML
-    private ColorPicker newColor1;
+    private ColorPicker editColor1;
 
     @FXML
-    private ColorPicker newColor2;
+    private ColorPicker editColor2;
 
     @FXML
-    private ColorPicker newColor3;
+    private ColorPicker editColor3;
 
     @FXML
-    private TextField newYearOfManufacture;
+    private TextField editYear;
 
     @FXML
-    private TextField newPrice;
+    private TextField editPrice;
 
     @FXML
-    private TextField newQuantity;
+    private TextField editQuantity;
 
     @FXML
     private Label cautionLabelEdit;
 
     public void initialize() {
+        editRegNo.setDisable(true);
+        editYear.setDisable(true);
+        editMaker.setDisable(true);
+        editMaker.setDisable(true);
+
         cautionLabelEdit.setDisable(true);
 
         NetworkUtil.getInstance().send("EDIT\t");
@@ -50,76 +55,76 @@ public class EditCar {
             System.out.println("\n\t\t\t" + receivedData + "\n");
             String[] splited = receivedData.split("\t");
 
-            newRegNo.setText(splited[0]);
-            newYearOfManufacture.setText(splited[1]);
-            newColor1.setValue(Color.valueOf(splited[2]));
-            newColor2.setValue(Color.valueOf(splited[3]));
-            newColor3.setValue(Color.valueOf(splited[4]));
-            newManufacturer.setText(splited[5]);
-            newModel.setText(splited[6]);
-            newPrice.setText(splited[7]);
-            newQuantity.setText(splited[8]);
+            editRegNo.setText(splited[0]);
+            editYear.setText(splited[1]);
+            editColor1.setValue(Color.valueOf(splited[2]));
+            editColor2.setValue(Color.valueOf(splited[3]));
+            editColor3.setValue(Color.valueOf(splited[4]));
+            editMaker.setText(splited[5]);
+            editModel.setText(splited[6]);
+            editPrice.setText(splited[7]);
+            editQuantity.setText(splited[8]);
 
         }).start();
     }
 
     @FXML
     void OnClearPressed() {
-        newRegNo.clear();
-        newYearOfManufacture.clear();
-        newColor1.setValue(Color.WHITE);
-        newColor2.setValue(Color.WHITE);
-        newColor3.setValue(Color.WHITE);
-        newManufacturer.clear();
-        newModel.clear();
-        newPrice.clear();
-        newQuantity.clear();
+        editRegNo.clear();
+        editYear.clear();
+        editColor1.setValue(Color.WHITE);
+        editColor2.setValue(Color.WHITE);
+        editColor3.setValue(Color.WHITE);
+        editMaker.clear();
+        editModel.clear();
+        editPrice.clear();
+        editQuantity.clear();
     }
 
     @FXML
     void OnReturnToHomePressed() {
-        ((Stage)newQuantity.getScene().getWindow()).close();
+        ((Stage)editRegNo.getScene().getWindow()).close();
     }
 
     @FXML
     void onConfirmPressed() {
         try {
-            int n = Integer.parseInt(newPrice.getText());
+            int n = Integer.parseInt(editPrice.getText());
             if (n<=0) {
                 cautionLabelEdit.setDisable(false);
-                newPrice.clear();
+                editPrice.clear();
             }
         } catch (NumberFormatException e) {
             cautionLabelEdit.setDisable(false);
-            newPrice.clear();
+            editPrice.clear();
         }
 
         try {
-            int n = Integer.parseInt(newYearOfManufacture.getText());
+            int n = Integer.parseInt(editYear.getText());
             if (n<=0) {
                 cautionLabelEdit.setDisable(false);
-                newYearOfManufacture.clear();
+                editYear.clear();
             }
         } catch (NumberFormatException e) {
             cautionLabelEdit.setDisable(false);
-            newYearOfManufacture.clear();
+            editYear.clear();
         }
 
         try {
-            int n = Integer.parseInt(newQuantity.getText());
+            int n = Integer.parseInt(editQuantity.getText());
             if (n<=0) {
                 cautionLabelEdit.setDisable(false);
-                newQuantity.clear();
+                editQuantity.clear();
             }
         } catch (NumberFormatException e) {
             cautionLabelEdit.setDisable(false);
-            newQuantity.clear();
+            editQuantity.clear();
         }
 
         if (cautionLabelEdit.isDisabled()) {
-            String str = "EDITCAR" + "\t" + newRegNo.getText() + "\t" + newYearOfManufacture.getText() + "\t";
-            str += newColor1.getValue() + "\t" + newColor2.getValue() + "\t" + newColor3.getValue() + "\t";
-            str += newManufacturer.getText() + "\t" + newModel.getText() + "\t" + newPrice.getText() + "\t" + newQuantity.getText();
+            String str = "EDITCAR" + "\t" + editRegNo.getText() + "\t" + editYear.getText() + "\t";
+            str += editColor1.getValue() + "\t" + editColor2.getValue() + "\t" + editColor3.getValue() + "\t";
+            str += editMaker.getText() + "\t" + editModel.getText() + "\t" + editPrice.getText() + "\t" + editQuantity.getText();
 
             NetworkUtil.getInstance().send(str);
 

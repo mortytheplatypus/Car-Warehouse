@@ -102,6 +102,8 @@ public class AddNewCar {
                 Platform.runLater(() -> {
                     if (receivedData.equals("ADDED")) {
                         new Alert(Alert.AlertType.CONFIRMATION).show();
+                    } else {
+                        new Alert(Alert.AlertType.ERROR).show();
                     }
                 });
             }).start();

@@ -2,24 +2,26 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchorPane" prefHeight="509.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ViewAllCarsViewer">
+<AnchorPane fx:id="mainAnchorPane" prefHeight="510.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ViewAllCarsViewer">
    <children>
       <TableView fx:id="carDataTable" layoutX="34.0" layoutY="54.0" prefHeight="400.0" prefWidth="675.0">
          <columns>
-            <TableColumn fx:id="regNo" prefWidth="75.0" text="Reg. No." />
-            <TableColumn fx:id="yearMade" prefWidth="75.0" text="Year Made" />
-            <TableColumn fx:id="color1" prefWidth="75.0" text="Color1" />
-            <TableColumn fx:id="color2" prefWidth="75.0" text="Color2" />
-            <TableColumn fx:id="color3" prefWidth="75.0" text="Color3" />
-            <TableColumn fx:id="maker" prefWidth="75.0" text="Maker" />
-            <TableColumn fx:id="model" prefWidth="75.0" text="Model" />
-            <TableColumn fx:id="price" prefWidth="75.0" text="Price" />
-            <TableColumn fx:id="quantity" prefWidth="75.0" text="Quantity" />
+            <TableColumn fx:id="regNo" prefWidth="110.0" text="Reg. No." />
+            <TableColumn fx:id="yearMade" prefWidth="70.0" text="Year Made" />
+            <TableColumn fx:id="color1" prefWidth="70.0" text="Color1" />
+            <TableColumn fx:id="color2" prefWidth="70.0" text="Color2" />
+            <TableColumn fx:id="color3" prefWidth="70.0" text="Color3" />
+            <TableColumn fx:id="maker" text="Maker" />
+            <TableColumn fx:id="model" text="Model" />
+            <TableColumn fx:id="price" prefWidth="65.0" text="Price" />
+            <TableColumn fx:id="quantity" prefWidth="60.0" text="Quantity" />
          </columns>
          <contextMenu>
             <ContextMenu>
@@ -30,8 +32,16 @@
             </ContextMenu>
          </contextMenu>
       </TableView>
-      <Button fx:id="refreshV" layoutX="654.0" layoutY="465.0" text="Refresh" />
+      <Button layoutX="654.0" layoutY="465.0" onAction="#refreshThisPage" text="Refresh" />
       <Button layoutX="34.0" layoutY="465.0" mnemonicParsing="false" onAction="#returnToMainPage" text="Return to main page" />
-      <Button layoutX="584.0" layoutY="14.0" mnemonicParsing="false" onAction="#onSearchCarClicked" prefHeight="25.0" prefWidth="125.0" text="Search Car" />
+      <Button layoutX="607.0" layoutY="11.0" mnemonicParsing="false" onAction="#onSearchCarClicked" prefHeight="25.0" prefWidth="103.0" text="Search Car">
+         <font>
+            <Font name="System Italic" size="15.0" />
+         </font></Button>
+      <Label layoutX="34.0" layoutY="9.0" prefHeight="35.0" prefWidth="91.0" text="Car List">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
