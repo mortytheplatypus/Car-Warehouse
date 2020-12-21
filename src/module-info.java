@@ -3,5 +3,5 @@ module Car.Warehouse {
     requires javafx.controls;
     requires javafx.graphics;
 
-    opens sample;
+    opens mortytheplatypus;
 }
