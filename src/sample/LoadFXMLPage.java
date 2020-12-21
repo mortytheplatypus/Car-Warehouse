@@ -15,7 +15,7 @@ public class LoadFXMLPage {
         try {
             loginPageParent = FXMLLoader.load(getClass().getResource(fileName));
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         Scene loginPageScene = new Scene(loginPageParent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

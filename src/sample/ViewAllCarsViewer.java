@@ -54,25 +54,30 @@ public class ViewAllCarsViewer {
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
         quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
+        refreshViewer();
+
+    }
+
+    private void refreshViewer() {
         NetworkUtil.getInstance().send("VIEWALL\t");
 
         new Thread(()-> {
             String str = NetworkUtil.getInstance().receive();
             String[] splited = str.split("\t");
             int n = Integer.parseInt(splited[1]);
+            Platform.runLater(()-> carDataTable.getItems().clear());
             for (int i=0; i<n; i++) {
                 String carInfo = NetworkUtil.getInstance().receive();
                 String[] s = carInfo.split("\t");
                 Car car = new Car(s[0], Integer.parseInt(s[1]), s[2], s[3], s[4], s[5], s[6], Integer.parseInt(s[7]), Integer.parseInt(s[8]));
-                carDataTable.getItems().add(car);
+                Platform.runLater(()-> carDataTable.getItems().add(car));
             }
         }).start();
-
     }
 
     @FXML
-    void refreshThisPage(ActionEvent event)  {
-        new LoadFXMLPage("ViewAllCarsViewer.fxml", event);
+    void refreshThisPage()  {
+        refreshViewer();
     }
 
     @FXML
