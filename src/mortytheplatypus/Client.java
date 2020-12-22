@@ -5,8 +5,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class Client implements Runnable {
-    private static final String CAR_DATA_FILE_NAME = "D:\\BUET\\Academic\\1-2\\CSE 108\\Car Warehouse\\car.txt";
-    private static final String USERNAME_PASSWORD_FILE = "D:\\BUET\\Academic\\1-2\\CSE 108\\Car Warehouse\\UsernamePassword.txt";
+    private static final String CAR_DATA_FILE_NAME = "car.txt";
+    private static final String USERNAME_PASSWORD_FILE = "UsernamePassword.txt";
     private static ArrayList<Car> carArrayList = new ArrayList<>();
     private Socket socket;
     private Car carToBeEdited = null;
